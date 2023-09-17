@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Episode Generator by Shamir Islam</title>
+  <meta name="description" content="Watch a randomly chosen episode from your favorite TV shows with Random Episode Generator.">
+  <meta name="keywords" content="Random Episode Generator, TV Shows, Watch Episodes">
+  <meta name="author" content="Shamir Islam">
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Random Episode Generator">
+  <meta property="og:description" content="Watch a randomly chosen episode from your favorite TV shows.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://random-episode-generator.shamirislam.repl.co">
+  <meta property="og:image" content="https://res.cloudinary.com/dbcawo2ty/image/upload/v1694681101/featured_o4agwk.png">
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@shamirislam">
+  <meta name="twitter:title" content="Random Episode Generator">
+  <meta name="twitter:description" content="Watch a randomly chosen episode from your favorite TV shows.">
+  <meta name="twitter:image" content="https://res.cloudinary.com/dbcawo2ty/image/upload/v1694681101/featured_o4agwk.png">
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://random-episode-generator.shamirislam.repl.co">
+  <!-- Favicon -->
+  <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+  <!-- Import Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:400,600&display=swap">
+  <!-- Import Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(to bottom, #ffe1a1, #d2b790);
+    }
+    /* Header Styles */
+    #header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 30px;
+    }
+
+    .responsive-image {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    /* Container Styles */
+    .container {
+      min-width: 300px;
+      max-width: 800px;
+      background: #f6ebc1;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      padding: 60px 40px;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      overflow-wrap: break-word;
+      margin-bottom: 6%;
+    }
+    .container:hover {
+      /* transform: translateY(-5px); */
+    }
+    /* Typography */
+    h1, h2, p {
+      color: #4a2d27;
+    }
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.25em;
+    }
+    /* Button Styles */
+    button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1em;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #fff;
+      background: #6f1502;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+    }
+    button:hover {
+      background: #8a1b03;
+      transform: scale(1.05);
+    }
+    /* Mobile Specific Styles */
+    @media (max-width: 576px) {
+      #header {
+        margin-bottom: 10px;
+      }
+      .container {
+        padding: 40px 20px;
+        margin-bottom: 20%;
+      }
+      h1 {
+        font-size: 2em;
+      }
+      h2 {
+        font-size: 1.5em;
+      }
+      p {
+        font-size: 1em;
+      }
+      button {
+        padding: 12px 24px;
+      }
+    }
+    @media (max-width: 576px) {
+      .streaming-link img {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+      }
+}
+    
+  </style>
+</head>
+<body>
+  <header id="header">
+    <h1 class="title">Random Episode Generator</h1>
+    <p>Watch a randomly chosen episode from your favorite TV shows.</p>
+  </header>
+  <main class="container">
+    <h2>Now Playing: {{ show | title }}</h2>
+    <h1><i class="fa fa-hat-wizard"></i> {{ episode[0] }}</h1>
+    <p>Season {{ episode[1] }}, Episode {{ episode[2] }}</p>
+    {% if image_url %}
+    <img class="responsive-image" src="{{ image_url }}" alt="Episode Image">
+{% endif %}
+    <p>{{ episode[6] | replace("<p>", "") | replace("</p>", "") }}</p>
+    </br>
+<a href="{{ streaming_link }}" target="_blank" style="display: flex; align-items: center; justify-content: center; text-decoration: none; color: inherit; width: 100%;">
+  <img src="{{ streaming_logo }}" alt="Streaming Service Logo" style="width: 50px; height: 50px; margin-right: 10px; border-radius: 20%;">
+  <span>Watch on {{ streaming_service_name }}</span>
+</a>
+    </br>
+<button onclick="location.reload();">Generate New Episode <i class="fa fa-magic"></i></button></button>
+  </main>
+</body>
+</html>
