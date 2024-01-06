@@ -21,13 +21,12 @@ def read_csv(show):
 
 episode_data["The Office"] = read_csv("the_office")
 episode_data["Friends"] = read_csv("friends")
-episode_data["Beverly Hills, 90210"] = read_csv("beverly_hills_90210")
 
 
 @app.route("/")
 def home():
   # Randomly choose between 'The Office' and 'Friends'
-  chosen_show = random.choice(["The Office", "Friends", "Beverly Hills, 90210"])
+  chosen_show = random.choice(["The Office", "Friends"])
   episodes = episode_data.get(chosen_show, [])
 
   if not episodes:
@@ -51,11 +50,6 @@ def home():
       "link": "https://www.netflix.com/title/70274077",
       "logo": url_for("static", filename="netflix_logo.png"),
       "name": "Netflix"
-    },
-    "Beverly Hills, 90210": {
-      "link": "https://www.hulu.com/series/beverly-hills-90210-5f7e2c8b-4d1d-4c0e-9f2f-3b4e2b1b1f0c",
-      "logo": url_for("static", filename="hulu-logo.png"),
-      "name": "Hulu"
     },
   }
 
