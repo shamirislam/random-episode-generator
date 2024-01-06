@@ -54,7 +54,7 @@ def home():
     },
     "Beverly Hills, 90210": {
       "link": "https://www.hulu.com/series/beverly-hills-90210-5f7e2c8b-4d1d-4c0e-9f2f-3b4e2b1b1f0c",
-      "logo": url_for("static", filename="hulu_logo.png"),
+      "logo": url_for("static", filename="hulu-logo.png"),
       "name": "Hulu"
     },
   }
