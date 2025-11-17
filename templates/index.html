@@ -4,781 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Episode Roulette - Discover Your Next Watch</title>
-    <meta name="description" content="The most beautiful way to discover your next TV episode">
-
-    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="/static/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
     <style>
-        /* ==================== DESIGN SYSTEM ==================== */
         :root {
-            /* Colors - Sophisticated Palette */
-            --primary: #FF6B6B;
-            --primary-dark: #E85D5D;
-            --primary-light: #FF8787;
-
-            --secondary: #4ECDC4;
-            --secondary-dark: #45B8B0;
-            --secondary-light: #6FD8D0;
-
-            --accent: #FFE66D;
-            --accent-dark: #F0D54E;
-
-            --success: #51CF66;
-            --warning: #FFC078;
-            --error: #FF6B6B;
-
-            /* Neutrals */
-            --gray-50: #FAFAFA;
-            --gray-100: #F5F5F5;
-            --gray-200: #EEEEEE;
-            --gray-300: #E0E0E0;
-            --gray-400: #BDBDBD;
-            --gray-500: #9E9E9E;
-            --gray-600: #757575;
-            --gray-700: #616161;
-            --gray-800: #424242;
-            --gray-900: #212121;
-
-            /* Semantic Colors */
-            --bg-primary: #FFFFFF;
-            --bg-secondary: var(--gray-50);
-            --bg-tertiary: var(--gray-100);
-
-            --text-primary: var(--gray-900);
-            --text-secondary: var(--gray-600);
-            --text-tertiary: var(--gray-500);
-
-            /* Glassmorphism */
-            --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.18);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-
-            /* Elevation Shadows */
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --primary: #FF6B6B; --primary-dark: #E85D5D; --secondary: #4ECDC4;
+            --accent: #FFE66D; --success: #51CF66; --gray-50: #FAFAFA; --gray-100: #F5F5F5;
+            --gray-200: #EEEEEE; --gray-300: #E0E0E0; --gray-600: #757575; --gray-900: #212121;
+            --bg-primary: #FFFFFF; --bg-secondary: var(--gray-50);
+            --text-primary: var(--gray-900); --text-secondary: var(--gray-600);
+            --glass-bg: rgba(255, 255, 255, 0.7); --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-
-            /* Spacing Scale */
-            --space-1: 0.25rem;
-            --space-2: 0.5rem;
-            --space-3: 0.75rem;
-            --space-4: 1rem;
-            --space-5: 1.25rem;
-            --space-6: 1.5rem;
-            --space-8: 2rem;
-            --space-10: 2.5rem;
-            --space-12: 3rem;
-            --space-16: 4rem;
-            --space-20: 5rem;
-
-            /* Border Radius */
-            --radius-sm: 0.375rem;
-            --radius: 0.5rem;
-            --radius-md: 0.75rem;
-            --radius-lg: 1rem;
-            --radius-xl: 1.5rem;
-            --radius-2xl: 2rem;
-            --radius-full: 9999px;
-
-            /* Transitions */
-            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem; --space-6: 1.5rem; --space-8: 2rem;
+            --radius: 0.5rem; --radius-lg: 1rem; --radius-xl: 1.5rem; --radius-2xl: 2rem; --radius-full: 9999px;
             --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
-        /* Dark Mode */
         [data-theme="dark"] {
-            --bg-primary: #1A1A1A;
-            --bg-secondary: #242424;
-            --bg-tertiary: #2E2E2E;
-
-            --text-primary: #FFFFFF;
-            --text-secondary: #B0B0B0;
-            --text-tertiary: #808080;
-
+            --bg-primary: #1A1A1A; --bg-secondary: #242424;
+            --text-primary: #FFFFFF; --text-secondary: #B0B0B0;
             --glass-bg: rgba(30, 30, 30, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.08);
         }
-
-        /* ==================== RESET & BASE ==================== */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ==================== TYPOGRAPHY ==================== */
-        .heading-display {
-            font-family: 'Playfair Display', serif;
-            font-weight: 800;
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-        }
-
-        .heading-1 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            line-height: 1.2;
-            letter-spacing: -0.01em;
-        }
-
-        .heading-2 {
-            font-weight: 700;
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            line-height: 1.3;
-        }
-
-        .heading-3 {
-            font-weight: 600;
-            font-size: 1.25rem;
-            line-height: 1.4;
-        }
-
-        .body-large {
-            font-size: 1.125rem;
-            line-height: 1.7;
-        }
-
-        .body {
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .body-small {
-            font-size: 0.875rem;
-            line-height: 1.5;
-        }
-
-        .caption {
-            font-size: 0.75rem;
-            line-height: 1.4;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-        }
-
-        /* ==================== LAYOUT ==================== */
-        .app-container {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            min-height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            background: var(--bg-primary);
-            border-right: 1px solid var(--gray-200);
-            display: flex;
-            flex-direction: column;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            overflow-y: auto;
-            z-index: 100;
-            transition: transform var(--transition-base);
-        }
-
-        .sidebar-header {
-            padding: var(--space-8) var(--space-6);
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            font-weight: 800;
-            font-size: 1.25rem;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .nav {
-            flex: 1;
-            padding: var(--space-6) var(--space-4);
-        }
-
-        .nav-section {
-            margin-bottom: var(--space-8);
-        }
-
-        .nav-label {
-            padding: 0 var(--space-4);
-            margin-bottom: var(--space-3);
-            color: var(--text-tertiary);
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            padding: var(--space-3) var(--space-4);
-            border-radius: var(--radius);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all var(--transition-fast);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .nav-item:hover {
-            background: var(--gray-100);
-            color: var(--text-primary);
-        }
-
-        .nav-item.active {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .nav-item-icon {
-            font-size: 1.25rem;
-            width: 24px;
-            text-align: center;
-        }
-
-        .nav-item-badge {
-            margin-left: auto;
-            background: var(--primary);
-            color: white;
-            padding: 0.125rem 0.5rem;
-            border-radius: var(--radius-full);
-            font-size: 0.75rem;
-            font-weight: 700;
-        }
-
-        .nav-item.active .nav-item-badge {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .sidebar-footer {
-            padding: var(--space-6);
-            border-top: 1px solid var(--gray-200);
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            overflow-y: auto;
-        }
-
-        .content-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: var(--space-8);
-        }
-
-        /* Hero Section */
-        .hero-section {
-            margin-bottom: var(--space-12);
-            text-align: center;
-        }
-
-        .hero-title {
-            margin-bottom: var(--space-4);
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto var(--space-8);
-        }
-
-        /* Cards */
-        .card {
-            background: var(--bg-primary);
-            border-radius: var(--radius-xl);
-            padding: var(--space-8);
-            box-shadow: var(--shadow-md);
-            transition: all var(--transition-base);
-        }
-
-        .card:hover {
-            box-shadow: var(--shadow-xl);
-            transform: translateY(-2px);
-        }
-
-        .card-glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-        }
-
-        /* Episode Display */
-        .episode-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-8);
-            margin-bottom: var(--space-8);
-        }
-
-        .episode-image-container {
-            position: relative;
-            border-radius: var(--radius-2xl);
-            overflow: hidden;
-            aspect-ratio: 16/9;
-            box-shadow: var(--shadow-2xl);
-        }
-
-        .episode-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition-slow);
-        }
-
-        .episode-image-container:hover .episode-image {
-            transform: scale(1.05);
-        }
-
-        .episode-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: var(--space-8);
-            opacity: 0;
-            transition: opacity var(--transition-base);
-        }
-
-        .episode-image-container:hover .episode-overlay {
-            opacity: 1;
-        }
-
-        .episode-info {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-6);
-        }
-
-        .episode-meta {
-            display: flex;
-            gap: var(--space-4);
-            flex-wrap: wrap;
-        }
-
-        .meta-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-2) var(--space-4);
-            background: var(--gray-100);
-            border-radius: var(--radius-full);
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-
-        .meta-badge-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-2);
-            padding: var(--space-4) var(--space-6);
-            border: none;
-            border-radius: var(--radius-lg);
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all var(--transition-base);
-            text-decoration: none;
-            font-family: inherit;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-primary:hover {
-            box-shadow: var(--shadow-xl);
-            transform: translateY(-2px);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .btn-secondary {
-            background: var(--gray-100);
-            color: var(--text-primary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--gray-200);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--text-secondary);
-        }
-
-        .btn-ghost:hover {
-            background: var(--gray-100);
-            color: var(--text-primary);
-        }
-
-        .btn-large {
-            padding: var(--space-5) var(--space-8);
-            font-size: 1.125rem;
-            border-radius: var(--radius-xl);
-        }
-
-        .btn-icon {
-            width: 44px;
-            height: 44px;
-            padding: 0;
-            border-radius: var(--radius-full);
-        }
-
-        /* Floating Action Button */
-        .fab {
-            position: fixed;
-            bottom: var(--space-8);
-            right: var(--space-8);
-            width: 64px;
-            height: 64px;
-            border-radius: var(--radius-full);
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-2xl);
-            transition: all var(--transition-spring);
-            z-index: 1000;
-        }
-
-        .fab:hover {
-            transform: scale(1.1) rotate(90deg);
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.3);
-        }
-
-        .fab:active {
-            transform: scale(0.95);
-        }
-
-        /* Filter Panel */
-        .filter-panel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-6);
-            padding: var(--space-6);
-            background: var(--bg-secondary);
-            border-radius: var(--radius-xl);
-            margin-bottom: var(--space-8);
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-2);
-        }
-
-        .filter-label {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-
-        .filter-select {
-            padding: var(--space-3) var(--space-4);
-            border: 2px solid var(--gray-300);
-            border-radius: var(--radius);
-            font-family: inherit;
-            font-size: 1rem;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            transition: all var(--transition-fast);
-        }
-
-        .filter-select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
-        }
-
-        /* Show Cards */
-        .show-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: var(--space-6);
-            margin-bottom: var(--space-8);
-        }
-
-        .show-card {
-            position: relative;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            aspect-ratio: 16/10;
-            cursor: pointer;
-            transition: all var(--transition-base);
-            box-shadow: var(--shadow-md);
-        }
-
-        .show-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-2xl);
-        }
-
-        .show-card-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            opacity: 0.9;
-        }
-
-        .show-card-content {
-            position: relative;
-            height: 100%;
-            padding: var(--space-6);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            color: white;
-        }
-
-        .show-card-icon {
-            font-size: 3rem;
-        }
-
-        .show-card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .show-card-meta {
-            font-size: 0.875rem;
-            opacity: 0.9;
-        }
-
-        /* Toast */
-        .toast-container {
-            position: fixed;
-            top: var(--space-6);
-            right: var(--space-6);
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-3);
-            pointer-events: none;
-        }
-
-        .toast {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            padding: var(--space-4) var(--space-5);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-xl);
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            min-width: 320px;
-            pointer-events: all;
-            animation: slideInRight 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        @keyframes slideInRight {
-            from { transform: translateX(400px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        .toast-icon {
-            font-size: 1.25rem;
-        }
-
-        .toast-content {
-            flex: 1;
-        }
-
-        .toast-title {
-            font-weight: 600;
-            margin-bottom: 0.125rem;
-        }
-
-        .toast-message {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        /* Loading States */
-        .skeleton {
-            background: linear-gradient(90deg, var(--gray-200) 25%, var(--gray-100) 50%, var(--gray-200) 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-            border-radius: var(--radius);
-        }
-
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9998;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity var(--transition-base);
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .modal {
-            background: var(--bg-primary);
-            border-radius: var(--radius-2xl);
-            padding: var(--space-8);
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: var(--shadow-2xl);
-            transform: scale(0.9);
-            transition: transform var(--transition-spring);
-        }
-
-        .modal-overlay.active .modal {
-            transform: scale(1);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .episode-container {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .sidebar {
-                position: fixed;
-                transform: translateX(-100%);
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-            .app-container {
-                grid-template-columns: 1fr;
-            }
-
-            .content-wrapper {
-                padding: var(--space-6) var(--space-4);
-            }
-
-            .show-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Utilities */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-secondary); color: var(--text-primary); line-height: 1.6; }
+        .app-container { display: grid; grid-template-columns: auto 1fr; min-height: 100vh; }
+        .sidebar { width: 280px; background: var(--bg-primary); border-right: 1px solid var(--gray-200); display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; overflow-y: auto; z-index: 100; }
+        .sidebar-header { padding: var(--space-8) var(--space-6); border-bottom: 1px solid var(--gray-200); }
+        .logo { display: flex; align-items: center; gap: var(--space-3); font-weight: 800; font-size: 1.25rem; color: var(--primary); text-decoration: none; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .nav { flex: 1; padding: var(--space-6) var(--space-4); }
+        .nav-section { margin-bottom: var(--space-8); }
+        .nav-label { padding: 0 var(--space-4); margin-bottom: var(--space-3); color: var(--text-secondary); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .nav-item { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius); color: var(--text-secondary); cursor: pointer; transition: all var(--transition-base); font-weight: 500; }
+        .nav-item:hover { background: var(--gray-100); color: var(--text-primary); }
+        .nav-item.active { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; box-shadow: var(--shadow-lg); }
+        .nav-item-icon { font-size: 1.25rem; width: 24px; text-align: center; }
+        .nav-item-badge { margin-left: auto; background: var(--primary); color: white; padding: 0.125rem 0.5rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 700; }
+        .nav-item.active .nav-item-badge { background: rgba(255, 255, 255, 0.3); }
+        .sidebar-footer { padding: var(--space-6); border-top: 1px solid var(--gray-200); }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-4) var(--space-6); border: none; border-radius: var(--radius-lg); font-weight: 600; cursor: pointer; transition: all var(--transition-base); font-family: inherit; font-size: 1rem; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; box-shadow: var(--shadow-lg); }
+        .btn-primary:hover { box-shadow: var(--shadow-xl); transform: translateY(-2px); }
+        .btn-secondary { background: var(--gray-100); color: var(--text-primary); }
+        .btn-secondary:hover { background: var(--gray-200); }
+        .btn-ghost { background: transparent; color: var(--text-secondary); }
+        .btn-ghost:hover { background: var(--gray-100); color: var(--text-primary); }
+        .main-content { flex: 1; overflow-y: auto; }
+        .content-wrapper { max-width: 1400px; margin: 0 auto; padding: var(--space-8); }
+        .hero-section { margin-bottom: var(--space-8); text-align: center; }
+        .hero-title { font-family: 'Playfair Display', serif; font-weight: 800; font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1; margin-bottom: var(--space-4); background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero-subtitle { color: var(--text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto var(--space-8); }
+        .show-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-6); margin-bottom: var(--space-8); }
+        .show-card { position: relative; border-radius: var(--radius-xl); overflow: hidden; aspect-ratio: 16/10; cursor: pointer; transition: all var(--transition-base); box-shadow: var(--shadow-md); }
+        .show-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2xl); }
+        .show-card-bg { position: absolute; inset: 0; opacity: 0.9; }
+        .show-card-content { position: relative; height: 100%; padding: var(--space-6); display: flex; flex-direction: column; justify-content: space-between; color: white; }
+        .show-card-icon { font-size: 3rem; }
+        .show-card-title { font-size: 1.5rem; font-weight: 700; }
+        .show-card-meta { font-size: 0.875rem; opacity: 0.9; }
+        .filter-panel { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-6); padding: var(--space-6); background: var(--bg-secondary); border-radius: var(--radius-xl); margin-bottom: var(--space-8); }
+        .filter-group { display: flex; flex-direction: column; gap: var(--space-2); }
+        .filter-label { font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); }
+        .filter-select { padding: var(--space-3) var(--space-4); border: 2px solid var(--gray-300); border-radius: var(--radius); font-family: inherit; background: var(--bg-primary); color: var(--text-primary); cursor: pointer; }
+        .filter-select:focus { outline: none; border-color: var(--primary); }
+        .card { background: var(--bg-primary); border-radius: var(--radius-xl); padding: var(--space-8); box-shadow: var(--shadow-md); }
+        .card-glass { background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); }
+        .episode-container { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); }
+        .episode-image-container { position: relative; border-radius: var(--radius-2xl); overflow: hidden; aspect-ratio: 16/9; box-shadow: var(--shadow-2xl); }
+        .episode-image { width: 100%; height: 100%; object-fit: cover; }
+        .episode-meta { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6); }
+        .meta-badge { display: inline-flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-4); background: var(--gray-100); border-radius: var(--radius-full); font-size: 0.875rem; font-weight: 600; }
+        .meta-badge-primary { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
+        .fab { position: fixed; bottom: var(--space-8); right: var(--space-8); width: 64px; height: 64px; border-radius: var(--radius-full); background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; border: none; font-size: 1.5rem; cursor: pointer; box-shadow: var(--shadow-2xl); z-index: 1000; transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .fab:hover { transform: scale(1.1) rotate(90deg); }
+        .fab:active { transform: scale(0.95); }
+        .toast-container { position: fixed; top: var(--space-6); right: var(--space-6); z-index: 9999; display: flex; flex-direction: column; gap: var(--space-3); }
+        .toast { background: var(--glass-bg); backdrop-filter: blur(20px); padding: var(--space-4) var(--space-6); border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); display: flex; align-items: center; gap: var(--space-3); min-width: 320px; animation: slideIn 0.3s; }
+        @keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         .hidden { display: none !important; }
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
-        .flex { display: flex; }
-        .flex-column { flex-direction: column; }
-        .items-center { align-items: center; }
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
-        .gap-2 { gap: var(--space-2); }
-        .gap-4 { gap: var(--space-4); }
-        .gap-6 { gap: var(--space-6); }
+        .heading-1 { font-family: 'Playfair Display', serif; font-weight: 700; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: var(--space-4); }
+        .body-large { font-size: 1.125rem; line-height: 1.7; }
         .mb-4 { margin-bottom: var(--space-4); }
         .mb-6 { margin-bottom: var(--space-6); }
         .mb-8 { margin-bottom: var(--space-8); }
+        .flex { display: flex; }
+        .gap-4 { gap: var(--space-4); }
+        .search-box { width: 100%; padding: var(--space-4); border: 2px solid var(--gray-300); border-radius: var(--radius-lg); font-size: 1.125rem; font-family: inherit; margin-bottom: var(--space-6); }
+        .search-box:focus { outline: none; border-color: var(--primary); }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--space-6); }
+        .item-card { background: var(--bg-primary); padding: var(--space-6); border-radius: var(--radius-xl); box-shadow: var(--shadow-md); cursor: pointer; transition: all var(--transition-base); border-left: 4px solid var(--primary); }
+        .item-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-xl); }
+        .item-title { font-weight: 600; margin-bottom: var(--space-2); }
+        .item-meta { font-size: 0.875rem; color: var(--text-secondary); }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-4); }
+        .stat-card { text-align: center; padding: var(--space-8); background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: var(--radius-xl); color: white; }
+        .stat-number { font-size: 3rem; font-weight: 800; display: block; }
+        .achievement-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-6); }
+        .achievement-card { background: var(--bg-primary); padding: var(--space-8); border-radius: var(--radius-xl); text-align: center; border: 3px solid transparent; transition: all var(--transition-base); }
+        .achievement-card.unlocked { border-color: var(--success); }
+        .achievement-icon { font-size: 4rem; margin-bottom: var(--space-4); }
+        @media (max-width: 1024px) { .episode-container { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { .sidebar { position: fixed; transform: translateX(-100%); } .sidebar.open { transform: translateX(0); } .app-container { grid-template-columns: 1fr; } .show-grid, .grid-3 { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body data-theme="light">
-    <!-- Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
-
     <div class="app-container">
-        <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="/" class="logo">
@@ -786,141 +120,86 @@
                     <span>Episode Roulette</span>
                 </a>
             </div>
-
             <nav class="nav">
                 <div class="nav-section">
                     <div class="nav-label">Discover</div>
-                    <div class="nav-item active" data-view="home">
-                        <span class="nav-item-icon">🎲</span>
-                        <span>Generate</span>
-                    </div>
-                    <div class="nav-item" data-view="collections">
-                        <span class="nav-item-icon">📚</span>
-                        <span>Collections</span>
-                    </div>
-                    <div class="nav-item" data-view="search">
-                        <span class="nav-item-icon">🔍</span>
-                        <span>Search</span>
-                    </div>
+                    <div class="nav-item active" data-view="home"><span class="nav-item-icon">🎲</span><span>Generate</span></div>
+                    <div class="nav-item" data-view="collections"><span class="nav-item-icon">📚</span><span>Collections</span></div>
+                    <div class="nav-item" data-view="search"><span class="nav-item-icon">🔍</span><span>Search</span></div>
                 </div>
-
                 <div class="nav-section">
                     <div class="nav-label">Library</div>
-                    <div class="nav-item" data-view="history">
-                        <span class="nav-item-icon">📜</span>
-                        <span>History</span>
-                        <span class="nav-item-badge" id="historyBadge">0</span>
-                    </div>
-                    <div class="nav-item" data-view="favorites">
-                        <span class="nav-item-icon">💖</span>
-                        <span>Favorites</span>
-                        <span class="nav-item-badge" id="favoritesBadge">0</span>
-                    </div>
-                    <div class="nav-item" data-view="queue">
-                        <span class="nav-item-icon">📋</span>
-                        <span>Queue</span>
-                        <span class="nav-item-badge" id="queueBadge">0</span>
-                    </div>
+                    <div class="nav-item" data-view="history"><span class="nav-item-icon">📜</span><span>History</span><span class="nav-item-badge" id="historyBadge">0</span></div>
+                    <div class="nav-item" data-view="favorites"><span class="nav-item-icon">💖</span><span>Favorites</span><span class="nav-item-badge" id="favoritesBadge">0</span></div>
+                    <div class="nav-item" data-view="queue"><span class="nav-item-icon">📋</span><span>Queue</span><span class="nav-item-badge" id="queueBadge">0</span></div>
                 </div>
-
                 <div class="nav-section">
                     <div class="nav-label">Profile</div>
-                    <div class="nav-item" data-view="achievements">
-                        <span class="nav-item-icon">🏆</span>
-                        <span>Achievements</span>
-                        <span class="nav-item-badge" id="achievementsBadge">0</span>
-                    </div>
-                    <div class="nav-item" data-view="stats">
-                        <span class="nav-item-icon">📊</span>
-                        <span>Stats</span>
-                    </div>
+                    <div class="nav-item" data-view="achievements"><span class="nav-item-icon">🏆</span><span>Achievements</span><span class="nav-item-badge" id="achievementsBadge">0</span></div>
+                    <div class="nav-item" data-view="stats"><span class="nav-item-icon">📊</span><span>Stats</span></div>
                 </div>
             </nav>
-
             <div class="sidebar-footer">
-                <button class="btn btn-ghost" style="width: 100%;" onclick="toggleTheme()">
-                    <span>🌓</span>
-                    <span>Toggle Theme</span>
-                </button>
+                <button class="btn btn-ghost" style="width: 100%;" onclick="toggleTheme()"><span>🌓</span><span>Toggle Theme</span></button>
             </div>
         </aside>
-
-        <!-- Main Content -->
         <main class="main-content">
             <div class="content-wrapper">
-                <!-- Home View -->
                 <div id="homeView">
                     <section class="hero-section">
-                        <h1 class="hero-title heading-display">Discover Your Next Watch</h1>
-                        <p class="hero-subtitle body-large">Let serendipity guide you to the perfect episode. Choose a show or let fate decide.</p>
+                        <h1 class="hero-title">Discover Your Next Watch</h1>
+                        <p class="hero-subtitle">Let serendipity guide you to the perfect episode. Choose a show or let fate decide.</p>
                     </section>
-
-                    <!-- Show Selector -->
                     <div class="show-grid" id="showGrid">
                         <div class="show-card" data-show="all" onclick="selectShow('all')">
                             <div class="show-card-bg" style="background: linear-gradient(135deg, #FF6B6B, #4ECDC4);"></div>
                             <div class="show-card-content">
                                 <div class="show-card-icon">🎲</div>
-                                <div>
-                                    <div class="show-card-title">Surprise Me</div>
-                                    <div class="show-card-meta">Random from all shows</div>
-                                </div>
+                                <div><div class="show-card-title">Surprise Me</div><div class="show-card-meta">Random from all shows</div></div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Filters -->
                     <div class="filter-panel">
-                        <div class="filter-group">
-                            <label class="filter-label">Season</label>
-                            <select class="filter-select" id="seasonFilter">
-                                <option value="">All Seasons</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label class="filter-label">Min Rating</label>
-                            <select class="filter-select" id="ratingFilter">
-                                <option value="0">Any Rating</option>
-                                <option value="7">7.0+</option>
-                                <option value="8">8.0+</option>
-                                <option value="9">9.0+</option>
-                            </select>
-                        </div>
-                        <div class="filter-group">
-                            <label class="filter-label">Mood</label>
-                            <select class="filter-select" id="moodFilter">
-                                <option value="">Any Mood</option>
-                                <option value="hilarious">Hilarious</option>
-                                <option value="feel-good">Feel Good</option>
-                                <option value="legendary">Legendary</option>
-                                <option value="classic">Classic</option>
-                            </select>
-                        </div>
+                        <div class="filter-group"><label class="filter-label">Season</label><select class="filter-select" id="seasonFilter"><option value="">All Seasons</option></select></div>
+                        <div class="filter-group"><label class="filter-label">Min Rating</label><select class="filter-select" id="ratingFilter"><option value="0">Any Rating</option><option value="7">7.0+</option><option value="8">8.0+</option><option value="9">9.0+</option></select></div>
+                        <div class="filter-group"><label class="filter-label">Mood</label><select class="filter-select" id="moodFilter"><option value="">Any Mood</option><option value="hilarious">Hilarious</option><option value="feel-good">Feel Good</option><option value="legendary">Legendary</option><option value="classic">Classic</option></select></div>
                     </div>
-
-                    <!-- Episode Display -->
                     <div id="episodeContainer" class="hidden"></div>
                 </div>
-
-                <!-- Other Views (Initially Hidden) -->
-                <div id="collectionsView" class="hidden"></div>
-                <div id="searchView" class="hidden"></div>
-                <div id="historyView" class="hidden"></div>
-                <div id="favoritesView" class="hidden"></div>
-                <div id="queueView" class="hidden"></div>
-                <div id="achievementsView" class="hidden"></div>
-                <div id="statsView" class="hidden"></div>
+                <div id="searchView" class="hidden">
+                    <h2 class="heading-1 mb-6">Search Episodes</h2>
+                    <input type="text" class="search-box" id="searchInput" placeholder="Search by title or description...">
+                    <div id="searchResults" class="grid-3"></div>
+                </div>
+                <div id="collectionsView" class="hidden">
+                    <h2 class="heading-1 mb-6">Curated Collections</h2>
+                    <div id="collectionsContent"></div>
+                </div>
+                <div id="historyView" class="hidden">
+                    <h2 class="heading-1 mb-6">Watch History</h2>
+                    <div id="historyContent" class="grid-3"></div>
+                </div>
+                <div id="favoritesView" class="hidden">
+                    <h2 class="heading-1 mb-6">Your Favorites</h2>
+                    <div id="favoritesContent" class="grid-3"></div>
+                </div>
+                <div id="queueView" class="hidden">
+                    <h2 class="heading-1 mb-6">Watch Queue</h2>
+                    <div id="queueContent" class="grid-3"></div>
+                </div>
+                <div id="achievementsView" class="hidden">
+                    <h2 class="heading-1 mb-6">Achievements</h2>
+                    <div id="achievementsContent" class="achievement-grid"></div>
+                </div>
+                <div id="statsView" class="hidden">
+                    <h2 class="heading-1 mb-6">Your Stats</h2>
+                    <div id="statsContent" class="stat-grid"></div>
+                </div>
             </div>
         </main>
     </div>
-
-    <!-- FAB -->
-    <button class="fab" onclick="generateEpisode()" title="Generate Random Episode">
-        🎯
-    </button>
-
+    <button class="fab" onclick="generateEpisode()" title="Generate Random Episode">🎯</button>
     <script>
-        // State Management
         const state = {
             shows: {},
             selectedShow: 'all',
@@ -928,41 +207,32 @@
             history: JSON.parse(localStorage.getItem('episodeHistory')) || [],
             favorites: JSON.parse(localStorage.getItem('episodeFavorites')) || [],
             queue: JSON.parse(localStorage.getItem('episodeQueue')) || [],
-            achievements: [],
             theme: localStorage.getItem('theme') || 'light',
-            currentView: 'home',
-            filters: {
-                season: '',
-                minRating: 0,
-                mood: ''
-            }
+            filters: { season: '', minRating: 0, mood: '' }
         };
 
-        // Initialize
         async function init() {
             applyTheme(state.theme);
             await loadShows();
             setupEventListeners();
             updateBadges();
+            await checkAchievements();
             showToast('Welcome!', 'Ready to discover your next watch?', 'success');
         }
 
-        // Load Shows
         async function loadShows() {
             try {
-                const response = await fetch('/api/shows');
-                const data = await response.json();
+                const res = await fetch('/api/shows');
+                const data = await res.json();
                 if (data.success) {
                     state.shows = data.shows;
                     renderShowCards();
                 }
-            } catch (error) {
-                console.error('Error loading shows:', error);
+            } catch (e) {
                 showToast('Error', 'Failed to load shows', 'error');
             }
         }
 
-        // Render Show Cards
         function renderShowCards() {
             const grid = document.getElementById('showGrid');
             Object.entries(state.shows).forEach(([key, show]) => {
@@ -970,215 +240,250 @@
                 card.className = 'show-card';
                 card.dataset.show = key;
                 card.onclick = () => selectShow(key);
-                card.innerHTML = `
-                    <div class="show-card-bg" style="background: linear-gradient(135deg, ${show.color}, ${adjustColor(show.color, -20)});"></div>
-                    <div class="show-card-content">
-                        <div class="show-card-icon">${show.emoji}</div>
-                        <div>
-                            <div class="show-card-title">${show.display_name}</div>
-                            <div class="show-card-meta">${show.total_episodes} episodes • ${show.seasons} seasons</div>
-                        </div>
-                    </div>
-                `;
+                card.innerHTML = `<div class="show-card-bg" style="background: linear-gradient(135deg, ${show.color}, ${show.color});"></div>
+                    <div class="show-card-content"><div class="show-card-icon">${show.emoji}</div>
+                    <div><div class="show-card-title">${show.display_name}</div>
+                    <div class="show-card-meta">${show.total_episodes} episodes • ${show.seasons} seasons</div></div></div>`;
                 grid.appendChild(card);
             });
         }
 
-        // Select Show
-        function selectShow(showKey) {
-            state.selectedShow = showKey;
-            document.querySelectorAll('.show-card').forEach(card => {
-                card.style.opacity = card.dataset.show === showKey ? '1' : '0.6';
-            });
+        function selectShow(key) {
+            state.selectedShow = key;
+            document.querySelectorAll('.show-card').forEach(c => c.style.opacity = c.dataset.show === key ? '1' : '0.6');
             updateSeasonFilter();
         }
 
-        // Update Season Filter
         async function updateSeasonFilter() {
             const filter = document.getElementById('seasonFilter');
             filter.innerHTML = '<option value="">All Seasons</option>';
-
-            if (state.selectedShow !== 'all' && state.shows[state.selectedShow]) {
+            if (state.selectedShow !== 'all') {
                 try {
-                    const response = await fetch(`/api/show/${state.selectedShow}/seasons`);
-                    const data = await response.json();
-                    if (data.success) {
-                        data.seasons.forEach(season => {
-                            const option = document.createElement('option');
-                            option.value = season.season;
-                            option.textContent = `Season ${season.season} (${season.episode_count})`;
-                            filter.appendChild(option);
-                        });
-                    }
-                } catch (error) {
-                    console.error('Error loading seasons:', error);
-                }
+                    const res = await fetch(`/api/show/${state.selectedShow}/seasons`);
+                    const data = await res.json();
+                    if (data.success) data.seasons.forEach(s => {
+                        const opt = document.createElement('option');
+                        opt.value = s.season;
+                        opt.textContent = `Season ${s.season} (${s.episode_count})`;
+                        filter.appendChild(opt);
+                    });
+                } catch (e) {}
             }
         }
 
-        // Generate Episode
         async function generateEpisode() {
             try {
-                const fab = document.querySelector('.fab');
-                fab.style.transform = 'scale(0.8)';
-                setTimeout(() => fab.style.transform = '', 200);
-
                 let url = '/api/random-episode?';
                 if (state.selectedShow !== 'all') url += `show=${state.selectedShow}&`;
                 if (state.filters.season) url += `season=${state.filters.season}&`;
                 if (state.filters.minRating > 0) url += `min_rating=${state.filters.minRating}&`;
                 if (state.filters.mood) url += `mood=${state.filters.mood}&`;
 
-                const response = await fetch(url);
-                const data = await response.json();
+                const res = await fetch(url);
+                const data = await res.json();
 
                 if (data.success) {
                     displayEpisode(data);
                     addToHistory(data);
-
                     if (data.episode.rating >= 9.5) {
-                        launchConfetti();
-                        showToast('Legendary!', `You got a ${data.episode.rating}/10 episode!`, 'success');
+                        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                        showToast('Legendary!', `${data.episode.rating}/10 episode!`, 'success');
                     }
                 } else {
                     showToast('No Match', data.error || 'No episodes found', 'warning');
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                showToast('Error', 'Failed to generate episode', 'error');
+            } catch (e) {
+                showToast('Error', 'Failed to generate', 'error');
             }
         }
 
-        // Display Episode
         function displayEpisode(data) {
             state.currentEpisode = data;
-            const container = document.getElementById('episodeContainer');
-            container.className = '';
-
-            container.innerHTML = `
-                <div class="card card-glass mb-8">
-                    <div class="episode-container">
-                        <div class="episode-image-container">
-                            <img src="${data.episode.image_url || '/static/featured.png'}" alt="${data.episode.name}" class="episode-image">
-                            <div class="episode-overlay">
-                                <div class="meta-badge meta-badge-primary">
-                                    ${data.show.emoji} ${data.show.display_name}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="episode-info">
-                            <div>
-                                <h2 class="heading-1 mb-4">${data.episode.name}</h2>
-                                <div class="episode-meta mb-6">
-                                    <div class="meta-badge">
-                                        <span>📺</span>
-                                        <span>S${data.episode.season}E${data.episode.episode}</span>
-                                    </div>
-                                    <div class="meta-badge">
-                                        <span>⭐</span>
-                                        <span>${data.episode.rating}/10</span>
-                                    </div>
-                                    <div class="meta-badge">
-                                        <span>📅</span>
-                                        <span>${data.episode.airdate}</span>
-                                    </div>
-                                    <div class="meta-badge">
-                                        <span>⏱️</span>
-                                        <span>${data.episode.runtime} min</span>
-                                    </div>
-                                </div>
-                                <p class="body-large mb-6">${data.episode.summary}</p>
-                                ${data.episode.quote ? `
-                                    <div class="card mb-6" style="background: var(--bg-secondary); padding: var(--space-6);">
-                                        <div class="caption mb-2">💬 Iconic Quote</div>
-                                        <p class="body" style="font-style: italic;">"${data.episode.quote}"</p>
-                                    </div>
-                                ` : ''}
-                            </div>
-                            <div class="flex gap-4">
-                                <button class="btn btn-primary" onclick="window.open('${data.show.streaming.link}', '_blank')">
-                                    <span>▶️</span>
-                                    <span>Watch on ${data.show.streaming.name}</span>
-                                </button>
-                                <button class="btn btn-secondary" onclick="toggleFavorite()">
-                                    <span>💖</span>
-                                </button>
-                                <button class="btn btn-secondary" onclick="addToQueue()">
-                                    <span>📋</span>
-                                </button>
-                                <button class="btn btn-secondary" onclick="shareEpisode()">
-                                    <span>🔗</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            const c = document.getElementById('episodeContainer');
+            c.className = '';
+            c.innerHTML = `<div class="card card-glass mb-8"><div class="episode-container">
+                <div class="episode-image-container"><img src="${data.episode.image_url || '/static/featured.png'}" class="episode-image"></div>
+                <div><div><h2 class="heading-1 mb-4">${data.episode.name}</h2>
+                <div class="episode-meta"><div class="meta-badge"><span>📺</span><span>S${data.episode.season}E${data.episode.episode}</span></div>
+                <div class="meta-badge"><span>⭐</span><span>${data.episode.rating}/10</span></div>
+                <div class="meta-badge"><span>📅</span><span>${data.episode.airdate}</span></div></div>
+                <p class="body-large mb-6">${data.episode.summary}</p>
+                ${data.episode.quote ? `<div class="card mb-6" style="background: var(--bg-secondary); padding: var(--space-6);">
+                <div style="font-size: 0.75rem; font-weight: 600; margin-bottom: 0.5rem;">💬 ICONIC QUOTE</div>
+                <p style="font-style: italic;">"${data.episode.quote}"</p></div>` : ''}</div>
+                <div class="flex gap-4"><button class="btn btn-primary" onclick="window.open('${data.show.streaming.link}')">
+                <span>▶️</span><span>Watch Now</span></button>
+                <button class="btn btn-secondary" onclick="toggleFavorite()"><span>💖</span></button>
+                <button class="btn btn-secondary" onclick="addToQueue()"><span>📋</span></button>
+                <button class="btn btn-secondary" onclick="shareEpisode()"><span>🔗</span></button></div></div></div></div>`;
+            c.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // History
         function addToHistory(data) {
             state.history.unshift(data);
             if (state.history.length > 100) state.history.pop();
             localStorage.setItem('episodeHistory', JSON.stringify(state.history));
             updateBadges();
+            checkAchievements();
         }
 
-        // Favorites
         function toggleFavorite() {
             if (!state.currentEpisode) return;
-
-            const episodeId = state.currentEpisode.episode.id;
-            const index = state.favorites.findIndex(fav => fav.episode.id === episodeId);
-
-            if (index >= 0) {
-                state.favorites.splice(index, 1);
-                showToast('Removed', 'Removed from favorites', 'info');
+            const id = state.currentEpisode.episode.id;
+            const idx = state.favorites.findIndex(f => f.episode.id === id);
+            if (idx >= 0) {
+                state.favorites.splice(idx, 1);
+                showToast('Removed', 'From favorites', 'info');
             } else {
                 state.favorites.unshift(state.currentEpisode);
-                showToast('Added!', 'Added to favorites 💖', 'success');
-                launchConfetti();
+                showToast('Added!', 'To favorites 💖', 'success');
+                confetti({ particleCount: 50, spread: 50 });
             }
-
             localStorage.setItem('episodeFavorites', JSON.stringify(state.favorites));
             updateBadges();
+            checkAchievements();
         }
 
-        // Queue
         function addToQueue() {
             if (!state.currentEpisode) return;
-
-            const episodeId = state.currentEpisode.episode.id;
-            const exists = state.queue.some(item => item.episode.id === episodeId);
-
-            if (exists) {
-                showToast('Already in Queue', 'This episode is already queued', 'warning');
+            const id = state.currentEpisode.episode.id;
+            if (state.queue.some(item => item.episode.id === id)) {
+                showToast('Already Queued', 'Episode is in queue', 'warning');
                 return;
             }
-
             state.queue.push(state.currentEpisode);
             localStorage.setItem('episodeQueue', JSON.stringify(state.queue));
             updateBadges();
-            showToast('Added to Queue', 'Episode added to watch queue', 'success');
+            showToast('Queued', 'Added to queue', 'success');
         }
 
-        // Share
         function shareEpisode() {
             if (!state.currentEpisode) return;
-
-            const text = `Check out: ${state.currentEpisode.episode.name} (${state.currentEpisode.show.display_name} S${state.currentEpisode.episode.season}E${state.currentEpisode.episode.episode}) ⭐ ${state.currentEpisode.episode.rating}/10`;
-
-            if (navigator.share) {
-                navigator.share({ title: 'Episode Roulette', text, url: window.location.href }).catch(() => {});
-            } else {
-                navigator.clipboard.writeText(text);
-                showToast('Copied!', 'Episode info copied to clipboard', 'success');
-            }
+            const txt = `${state.currentEpisode.episode.name} (${state.currentEpisode.show.display_name} S${state.currentEpisode.episode.season}E${state.currentEpisode.episode.episode}) ⭐ ${state.currentEpisode.episode.rating}`;
+            if (navigator.share) navigator.share({ title: 'Episode Roulette', text: txt });
+            else { navigator.clipboard.writeText(txt); showToast('Copied!', 'To clipboard', 'success'); }
         }
 
-        // Theme
+        function switchView(view) {
+            document.querySelectorAll('[id$="View"]').forEach(v => v.classList.add('hidden'));
+            document.getElementById(`${view}View`).classList.remove('hidden');
+            document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+            document.querySelector(`.nav-item[data-view="${view}"]`).classList.add('active');
+
+            if (view === 'search') renderSearchView();
+            if (view === 'collections') loadCollections();
+            if (view === 'history') renderHistory();
+            if (view === 'favorites') renderFavorites();
+            if (view === 'queue') renderQueue();
+            if (view === 'achievements') renderAchievements();
+            if (view === 'stats') renderStats();
+        }
+
+        function renderSearchView() {
+            const input = document.getElementById('searchInput');
+            let timeout;
+            input.oninput = () => {
+                clearTimeout(timeout);
+                timeout = setTimeout(async () => {
+                    if (input.value.length < 2) return;
+                    try {
+                        const res = await fetch(`/api/search?q=${encodeURIComponent(input.value)}`);
+                        const data = await res.json();
+                        const cont = document.getElementById('searchResults');
+                        if (data.success && data.results.length) {
+                            cont.innerHTML = data.results.map(r => `<div class="item-card" onclick='displayEpisode(${JSON.stringify(r).replace(/'/g, "&apos;")})'>
+                                <div class="item-title">${r.episode.name}</div>
+                                <div class="item-meta">${r.show.emoji} ${r.show.display_name} S${r.episode.season}E${r.episode.episode} ⭐ ${r.episode.rating}</div></div>`).join('');
+                        } else cont.innerHTML = '<p>No results found</p>';
+                    } catch (e) {}
+                }, 300);
+            };
+        }
+
+        async function loadCollections() {
+            try {
+                const res = await fetch('/api/collections');
+                const data = await res.json();
+                if (data.success) {
+                    const cont = document.getElementById('collectionsContent');
+                    let html = '';
+                    Object.values(data.collections).forEach(coll => {
+                        Object.entries(coll).forEach(([type, eps]) => {
+                            if (type === 'show' || !Array.isArray(eps) || !eps.length) return;
+                            const titles = { top_rated: '⭐ Top Rated', hidden_gems: '💎 Hidden Gems', fan_favorites: '🔥 Fan Favorites', legendary: '👑 Legendary' };
+                            html += `<h3 style="margin: 2rem 0 1rem; font-size: 1.5rem;">${titles[type] || type}</h3><div class="grid-3">`;
+                            eps.slice(0, 12).forEach(item => {
+                                const e = item.episode || item;
+                                const s = item.show || coll.show;
+                                html += `<div class="item-card" onclick='displayEpisode(${JSON.stringify(item).replace(/'/g, "&apos;")})'>
+                                    <div class="item-title">${e.name}</div>
+                                    <div class="item-meta">${s.emoji} ${s.display_name} S${e.season}E${e.episode} ⭐ ${e.rating}</div></div>`;
+                            });
+                            html += '</div>';
+                        });
+                    });
+                    cont.innerHTML = html;
+                }
+            } catch (e) {}
+        }
+
+        function renderHistory() {
+            const cont = document.getElementById('historyContent');
+            if (!state.history.length) { cont.innerHTML = '<p>No history yet</p>'; return; }
+            cont.innerHTML = state.history.slice(0, 50).map(item => `<div class="item-card" onclick='displayEpisode(${JSON.stringify(item).replace(/'/g, "&apos;")})'>
+                <div class="item-title">${item.episode.name}</div>
+                <div class="item-meta">${item.show.emoji} ${item.show.display_name} S${item.episode.season}E${item.episode.episode} ⭐ ${item.episode.rating}</div></div>`).join('');
+        }
+
+        function renderFavorites() {
+            const cont = document.getElementById('favoritesContent');
+            if (!state.favorites.length) { cont.innerHTML = '<p>No favorites yet</p>'; return; }
+            cont.innerHTML = state.favorites.map(item => `<div class="item-card" onclick='displayEpisode(${JSON.stringify(item).replace(/'/g, "&apos;")})'>
+                <div class="item-title">${item.episode.name}</div>
+                <div class="item-meta">${item.show.emoji} ${item.show.display_name} S${item.episode.season}E${item.episode.episode} ⭐ ${item.episode.rating}</div></div>`).join('');
+        }
+
+        function renderQueue() {
+            const cont = document.getElementById('queueContent');
+            if (!state.queue.length) { cont.innerHTML = '<p>Queue is empty</p>'; return; }
+            cont.innerHTML = state.queue.map(item => `<div class="item-card" onclick='displayEpisode(${JSON.stringify(item).replace(/'/g, "&apos;")})'>
+                <div class="item-title">${item.episode.name}</div>
+                <div class="item-meta">${item.show.emoji} ${item.show.display_name} S${item.episode.season}E${item.episode.episode} ⭐ ${item.episode.rating}</div></div>`).join('');
+        }
+
+        async function checkAchievements() {
+            try {
+                const res = await fetch('/api/achievements', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ history: state.history, favorites: state.favorites })
+                });
+                const data = await res.json();
+                if (data.success) {
+                    document.getElementById('achievementsBadge').textContent = data.total_unlocked;
+                    state.achievements = data.achievements;
+                }
+            } catch (e) {}
+        }
+
+        function renderAchievements() {
+            const cont = document.getElementById('achievementsContent');
+            if (!state.achievements.length) { cont.innerHTML = '<p>Start watching to unlock!</p>'; return; }
+            cont.innerHTML = state.achievements.map(a => `<div class="achievement-card ${a.unlocked ? 'unlocked' : ''}">
+                <div class="achievement-icon">${a.icon}</div><div><strong>${a.name}</strong></div>
+                <div style="font-size: 0.875rem; color: var(--text-secondary); margin-top: 0.5rem;">${a.description}</div></div>`).join('');
+        }
+
+        function renderStats() {
+            const cont = document.getElementById('statsContent');
+            const uniqueShows = new Set(state.history.map(h => h.show.key)).size;
+            cont.innerHTML = `
+                <div class="stat-card"><span class="stat-number">${state.history.length}</span><span>Episodes Watched</span></div>
+                <div class="stat-card"><span class="stat-number">${state.favorites.length}</span><span>Favorites</span></div>
+                <div class="stat-card"><span class="stat-number">${uniqueShows}</span><span>Shows Explored</span></div>
+                <div class="stat-card"><span class="stat-number">${state.queue.length}</span><span>In Queue</span></div>`;
+        }
+
         function toggleTheme() {
             state.theme = state.theme === 'light' ? 'dark' : 'light';
             applyTheme(state.theme);
@@ -1189,101 +494,37 @@
             localStorage.setItem('theme', theme);
         }
 
-        // Toast
-        function showToast(title, message, type = 'info') {
-            const container = document.getElementById('toastContainer');
+        function showToast(title, msg, type = 'info') {
+            const icons = { success: '✅', error: '❌', info: 'ℹ️', warning: '⚠️' };
             const toast = document.createElement('div');
             toast.className = 'toast';
-
-            const icons = {
-                success: '✅',
-                error: '❌',
-                info: 'ℹ️',
-                warning: '⚠️'
-            };
-
-            toast.innerHTML = `
-                <span class="toast-icon">${icons[type]}</span>
-                <div class="toast-content">
-                    <div class="toast-title">${title}</div>
-                    <div class="toast-message">${message}</div>
-                </div>
-            `;
-
-            container.appendChild(toast);
-
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+            toast.innerHTML = `<span style="font-size: 1.25rem;">${icons[type]}</span>
+                <div><div style="font-weight: 600;">${title}</div><div style="font-size: 0.875rem; color: var(--text-secondary);">${msg}</div></div>`;
+            document.getElementById('toastContainer').appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
         }
 
-        // Confetti
-        function launchConfetti() {
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-        }
-
-        // Update Badges
         function updateBadges() {
             document.getElementById('historyBadge').textContent = state.history.length;
             document.getElementById('favoritesBadge').textContent = state.favorites.length;
             document.getElementById('queueBadge').textContent = state.queue.length;
         }
 
-        // Event Listeners
         function setupEventListeners() {
-            // Filters
-            document.getElementById('seasonFilter').addEventListener('change', (e) => {
-                state.filters.season = e.target.value;
-            });
-
-            document.getElementById('ratingFilter').addEventListener('change', (e) => {
-                state.filters.minRating = parseFloat(e.target.value);
-            });
-
-            document.getElementById('moodFilter').addEventListener('change', (e) => {
-                state.filters.mood = e.target.value;
-            });
-
-            // Navigation
+            document.getElementById('seasonFilter').onchange = e => state.filters.season = e.target.value;
+            document.getElementById('ratingFilter').onchange = e => state.filters.minRating = parseFloat(e.target.value);
+            document.getElementById('moodFilter').onchange = e => state.filters.mood = e.target.value;
             document.querySelectorAll('.nav-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    // View switching logic would go here
-                });
+                item.onclick = () => switchView(item.dataset.view);
             });
-
-            // Keyboard Shortcuts
-            document.addEventListener('keydown', (e) => {
+            document.addEventListener('keydown', e => {
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
-
-                switch(e.key) {
-                    case ' ':
-                    case 'Enter':
-                        e.preventDefault();
-                        generateEpisode();
-                        break;
-                    case 'f':
-                        if (state.currentEpisode) toggleFavorite();
-                        break;
-                    case 'q':
-                        if (state.currentEpisode) addToQueue();
-                        break;
-                }
+                if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); generateEpisode(); }
+                if (e.key === 'f' && state.currentEpisode) toggleFavorite();
+                if (e.key === 'q' && state.currentEpisode) addToQueue();
             });
         }
 
-        // Utility
-        function adjustColor(color, amount) {
-            return '#' + color.replace(/^#/, '').replace(/../g, color => ('0'+Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
-        }
-
-        // Start
         init();
     </script>
 </body>
