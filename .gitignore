@@ -20,3 +20,10 @@ env/
 
 # Vercel
 .vercel
+
+# AI coding agent local config
+.claude/
+.codex/
+.cursor/
+.agent/
+.agents/

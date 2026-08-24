@@ -157,6 +157,7 @@ def main():
         writer = csv.DictWriter(
             handle,
             fieldnames=["name", "season", "number", "airdate", "runtime", "rating", "summary", "image_url"],
+            lineterminator="\n",
         )
         writer.writeheader()
         writer.writerows(rows)
