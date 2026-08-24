@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+.env.local
+
+# Editor and OS noise
+.DS_Store
+.vscode/
+.idea/
+.breakpoints
+
+# Vercel
+.vercel
