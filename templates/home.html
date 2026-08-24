@@ -82,6 +82,37 @@
     p {
       font-size: 1.25em;
     }
+    /* Episode Meta Styles */
+    .episode-meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 0;
+      font-size: 1.1em;
+      color: #6f1502;
+    }
+    /* Quote Styles */
+    .quote {
+      margin: 25px auto 0;
+      padding: 15px 20px;
+      background: #f0dfa8;
+      border-left: 4px solid #6f1502;
+      border-radius: 6px;
+      text-align: left;
+    }
+    .quote-label {
+      font-size: 0.8em;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6f1502;
+      margin: 0 0 6px;
+    }
+    .quote-text {
+      font-style: italic;
+      margin: 0;
+    }
     /* Button Styles */
     button {
       margin-top: 30px;
@@ -119,6 +150,13 @@
       p {
         font-size: 1em;
       }
+      .quote-label {
+        font-size: 0.75em;
+      }
+      .episode-meta {
+        gap: 12px;
+        font-size: 0.95em;
+      }
       button {
         padding: 12px 24px;
       }
@@ -142,10 +180,20 @@
     <h2>Now Playing: {{ show | title }}</h2>
     <h1><i class="fa fa-hat-wizard"></i> {{ episode[0] }}</h1>
     <p>Season {{ episode[1] }}, Episode {{ episode[2] }}</p>
+    <p class="episode-meta">
+      {% if rating %}<span><i class="fa fa-star"></i> {{ rating }}/10</span>{% endif %}
+      {% if airdate and airdate != 'N/A' %}<span><i class="fa fa-calendar"></i> {{ airdate }}</span>{% endif %}
+    </p>
     {% if image_url %}
     <img class="responsive-image" src="{{ image_url }}" alt="Episode Image">
 {% endif %}
     <p>{{ episode[6] | replace("<p>", "") | replace("</p>", "") }}</p>
+    {% if quote %}
+    <div class="quote">
+      <p class="quote-label"><i class="fa fa-quote-left"></i> Iconic Quote</p>
+      <p class="quote-text">{{ quote }}</p>
+    </div>
+    {% endif %}
     </br>
 <a href="{{ streaming_link }}" target="_blank" style="display: flex; align-items: center; justify-content: center; text-decoration: none; color: inherit; width: 100%;">
   <img src="{{ streaming_logo }}" alt="Streaming Service Logo" style="width: 50px; height: 50px; margin-right: 10px; border-radius: 20%;">
