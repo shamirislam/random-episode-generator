@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for
 import ast
 import csv
+import os
 import random
 import html
 
@@ -123,4 +124,7 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # The Werkzeug debugger allows arbitrary code execution, so keep it opt-in
+    # via FLASK_DEBUG=1 rather than on by default.
+    debug = os.environ.get("FLASK_DEBUG", "").lower() in ("1", "true", "yes")
+    app.run(debug=debug)
