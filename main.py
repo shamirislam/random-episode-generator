@@ -1,12 +1,15 @@
 from flask import Flask, render_template, jsonify, request
+import ast
 import csv
 import random
 import html
 import os
-from datetime import datetime
-from collections import defaultdict
 
 app = Flask(__name__)
+
+# Resolve data files against the source tree rather than the working directory,
+# so the app loads its CSVs no matter where it is started from.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Pre-load episode data into memory during app initialization
 episode_data = {}
@@ -74,23 +77,39 @@ episode_extras = {
     }
 }
 
+def parse_rating(rating_str):
+    """Parse the ``{'average': 8.1}`` rating literal stored in the CSVs."""
+    if not rating_str:
+        return 0
+    try:
+        value = ast.literal_eval(rating_str)
+    except (ValueError, SyntaxError):
+        return 0
+    if isinstance(value, dict):
+        value = value.get('average', 0)
+    try:
+        return float(value or 0)
+    except (TypeError, ValueError):
+        return 0
+
+
+def parse_runtime(runtime_str):
+    """Return the episode runtime in minutes, or None when it is unknown."""
+    try:
+        return int(str(runtime_str).strip())
+    except (TypeError, ValueError):
+        return None
+
+
 def read_csv(show_key, display_name):
     """Read episode data from CSV file with enhanced metadata"""
-    file_path = f"./{show_key}_episodes.csv"
+    file_path = os.path.join(BASE_DIR, f"{show_key}_episodes.csv")
     try:
         with open(file_path, "r", encoding="utf-8") as file:
             reader = csv.DictReader(file)
             episodes = []
-            for idx, row in enumerate(reader):
-                # Parse rating if it exists
-                try:
-                    rating_str = row.get('rating', '0')
-                    if rating_str and 'average' in rating_str:
-                        rating = eval(rating_str).get('average', 0)
-                    else:
-                        rating = 0
-                except:
-                    rating = 0
+            for row in reader:
+                rating = parse_rating(row.get('rating'))
 
                 # Add episode with enhanced data
                 episode = {
@@ -100,6 +119,7 @@ def read_csv(show_key, display_name):
                     'episode': int(row['number']),
                     'airdate': row.get('airdate', 'N/A'),
                     'runtime': row.get('runtime', 'N/A'),
+                    'runtime_minutes': parse_runtime(row.get('runtime')),
                     'rating': rating,
                     'summary': html.unescape(row.get('summary', 'No summary available.')),
                     'image_url': row.get('image_url', ''),
@@ -112,10 +132,20 @@ def read_csv(show_key, display_name):
                 episodes.append(episode)
             return episodes
     except FileNotFoundError:
+        print(f"Missing episode data file: {file_path}")
         return []
-    except Exception as e:
-        print(f"Error reading {file_path}: {e}")
+    except (OSError, csv.Error, KeyError, ValueError) as error:
+        print(f"Error reading {file_path}: {error}")
         return []
+
+def percentile(values, fraction):
+    """Return the value at ``fraction`` through a sorted list, or 0 when empty."""
+    ranked = sorted(v for v in values if v)
+    if not ranked:
+        return 0
+    index = min(len(ranked) - 1, int(len(ranked) * fraction))
+    return ranked[index]
+
 
 def get_episode_mood(rating, season):
     """Determine episode mood based on rating and other factors"""
@@ -334,15 +364,23 @@ def get_collections():
         top_rated = sorted([ep for ep in episodes if ep['rating'] > 0],
                           key=lambda x: x['rating'], reverse=True)[:10]
 
-        # Hidden Gems (high rated but later seasons)
-        hidden_gems = sorted([ep for ep in episodes if ep['rating'] >= 8.5 and ep['season'] >= 5],
+        # Ratings are relative to each show, so a fixed cut-off would empty these
+        # collections for a lower-rated show. Rank within the show instead.
+        strong_threshold = percentile([ep['rating'] for ep in episodes if ep['rating'] > 0], 0.75)
+        favorite_threshold = percentile([ep['rating'] for ep in episodes if ep['rating'] > 0], 0.9)
+
+        # Hidden Gems (strong episodes from the later seasons)
+        hidden_gems = sorted([ep for ep in episodes
+                              if ep['rating'] >= strong_threshold and ep['season'] >= 5],
                             key=lambda x: x['rating'], reverse=True)[:5]
 
-        # Fan Favorites (ratings 9+)
-        fan_favorites = [ep for ep in episodes if ep['rating'] >= 9.0]
+        # Fan Favorites (the show's best rated episodes)
+        fan_favorites = sorted([ep for ep in episodes if ep['rating'] >= favorite_threshold],
+                               key=lambda x: x['rating'], reverse=True)[:20]
 
-        # Quick Watch (runtime-based if available)
-        quick_watch = [ep for ep in episodes if ep.get('runtime', '30') == '30'][:10]
+        # Quick Watch (shortest episodes available)
+        quick_watch = [ep for ep in episodes
+                       if ep.get('runtime_minutes') and ep['runtime_minutes'] <= 35][:10]
 
         collections[show_key] = {
             'show': {
@@ -358,6 +396,10 @@ def get_collections():
         }
 
     # All-time best across all shows
+    legendary_threshold = percentile(
+        [ep['rating'] for episodes in episode_data.values() for ep in episodes if ep['rating'] > 0],
+        0.98,
+    )
     all_episodes = []
     for show_key, episodes in episode_data.items():
         for ep in episodes:
@@ -379,7 +421,8 @@ def get_collections():
             'emoji': '🎬'
         },
         'top_rated': sorted(all_episodes, key=lambda x: x['episode']['rating'], reverse=True)[:20],
-        'legendary': [ep for ep in all_episodes if ep['episode']['rating'] >= 9.5][:10]
+        'legendary': sorted([ep for ep in all_episodes if ep['episode']['rating'] >= legendary_threshold],
+                            key=lambda x: x['episode']['rating'], reverse=True)[:10]
     }
 
     return jsonify({
@@ -426,11 +469,8 @@ def get_show_seasons(show_key):
             }
         seasons[season_num]['episode_count'] += 1
         seasons[season_num]['episodes'].append(episode)
-        if episode['runtime'] != 'N/A':
-            try:
-                seasons[season_num]['total_runtime'] += int(episode['runtime'])
-            except:
-                pass
+        if episode.get('runtime_minutes'):
+            seasons[season_num]['total_runtime'] += episode['runtime_minutes']
 
     # Calculate averages
     for season_data in seasons.values():
@@ -541,4 +581,6 @@ def check_achievements():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=8080)
+    # The debugger allows arbitrary code execution, so keep it opt-in.
+    debug = os.environ.get('FLASK_DEBUG', '').lower() in ('1', 'true', 'yes')
+    app.run(debug=debug, host=os.environ.get('HOST', '127.0.0.1'), port=int(os.environ.get('PORT', 8080)))
