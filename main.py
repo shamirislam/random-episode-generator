@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template
 import ast
 import csv
 import os
@@ -61,7 +61,7 @@ quotes = {
     "Knock, knock, knock. Penny. Knock, knock, knock. Penny.",
     "That's my spot.",
     "I'm not crazy. My mother had me tested.",
-    "Soft kitty, warm kitty, little ball of fur.",
+    "Engineering! Where the noble, semi-skilled labourers execute the vision of those who think and dream.",
     "Oh gravity, thou art a heartless witch.",
     "One cries because one is sad. I cry because others are stupid, and that makes me sad.",
   ],
@@ -83,27 +83,6 @@ def home():
   # Check if image_url exists in the episode data
   image_url = episode[7] if len(episode) > 7 else None
 
-  # Add streaming links
-  streaming_links = {
-    "The Office": {
-      "link":
-      "https://www.primevideo.com/detail/The-Office/0H7JFOPK2QO9WVZ8D9D0J5ZRQN",
-      "logo": url_for("static", filename="prime_logo.png"),
-      "name": "Prime Video"
-    },
-    "Friends": {
-      "link": "https://www.netflix.com/title/70274077",
-      "logo": url_for("static", filename="netflix_logo.png"),
-      "name": "Netflix"
-    },
-    "The Big Bang Theory": {
-      "link": "https://www.netflix.com/title/70143830",
-      "logo": url_for("static", filename="netflix_logo.png"),
-      "name": "Netflix"
-    },
-  }
-
-  streaming_info = streaming_links.get(chosen_show)
   quote = random.choice(quotes.get(chosen_show, [""]))
   airdate = episode[3] if len(episode) > 3 else None
   rating = read_rating(episode[5]) if len(episode) > 5 else None
@@ -114,9 +93,6 @@ def home():
     episode=episode,
     show=chosen_show.capitalize(),
     image_url=image_url,
-    streaming_link=streaming_info["link"],
-    streaming_logo=streaming_info["logo"],
-    streaming_service_name=streaming_info["name"],  # new line
     quote=quote,
     airdate=airdate,
     rating=rating,

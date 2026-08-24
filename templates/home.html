@@ -161,14 +161,6 @@
         padding: 12px 24px;
       }
     }
-    @media (max-width: 576px) {
-      .streaming-link img {
-        width: 30px;
-        height: 30px;
-        margin-right: 5px;
-      }
-}
-    
   </style>
 </head>
 <body>
@@ -194,11 +186,6 @@
       <p class="quote-text">{{ quote }}</p>
     </div>
     {% endif %}
-    </br>
-<a href="{{ streaming_link }}" target="_blank" style="display: flex; align-items: center; justify-content: center; text-decoration: none; color: inherit; width: 100%;">
-  <img src="{{ streaming_logo }}" alt="Streaming Service Logo" style="width: 50px; height: 50px; margin-right: 10px; border-radius: 20%;">
-  <span>Watch on {{ streaming_service_name }}</span>
-</a>
     </br>
 <button onclick="location.reload();">Generate New Episode <i class="fa fa-magic"></i></button></button>
   </main>
