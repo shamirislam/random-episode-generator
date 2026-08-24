@@ -4,6 +4,6 @@ version = "1.0.0"
 description = "Generate a random episode from your favourite TV shows"
 requires-python = ">=3.10"
 dependencies = [
-    "Flask==3.1.0",
-    "Werkzeug>=3.1.0",
+    "Flask==3.1.3",
+    "Werkzeug>=3.1.8",
 ]
