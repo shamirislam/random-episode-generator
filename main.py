@@ -51,6 +51,26 @@ episode_extras = {
             "The show was originally titled 'Insomnia Cafe' before becoming 'Friends Like Us' and finally 'Friends'.",
             "Marcel the monkey was played by two monkeys named Katie and Monkey."
         ]
+    },
+    'big_bang_theory': {
+        'quotes': [
+            "Bazinga!",
+            "Knock, knock, knock. Penny. Knock, knock, knock. Penny.",
+            "That's my spot.",
+            "I'm not crazy. My mother had me tested.",
+            "Soft kitty, warm kitty, little ball of fur.",
+            "Oh gravity, thou art a heartless witch.",
+            "I would have been here sooner, but the bus kept stopping for other people to get on it.",
+            "One cries because one is sad. I cry because others are stupid, and that makes me sad."
+        ],
+        'trivia': [
+            "The theme song was written and performed by the Canadian band Barenaked Ladies.",
+            "Mayim Bialik, who plays neurobiologist Amy Farrah Fowler, holds a real PhD in neuroscience.",
+            "Jim Parsons won four Emmy Awards for playing Sheldon Cooper.",
+            "The equations on the whiteboards were supplied by a UCLA physics professor who consulted on the show.",
+            "The apartment building elevator stayed broken from the pilot until the show's final season.",
+            "An earlier unaired pilot was filmed with a very different cast, and Penny's character did not exist yet."
+        ]
     }
 }
 
@@ -144,6 +164,18 @@ show_configs = {
         'emoji': '☕',
         'description': 'Six friends navigate life and love in New York City',
         'tags': ['comedy', 'friendship', 'romance', 'sitcom']
+    },
+    'big_bang_theory': {
+        'display_name': 'The Big Bang Theory',
+        'streaming': {
+            'link': 'https://www.netflix.com/title/70143830',
+            'logo': '/static/netflix_logo.png',
+            'name': 'Netflix'
+        },
+        'color': '#3B82C4',
+        'emoji': '⚛️',
+        'description': 'Four socially awkward physicists meet their new neighbour across the hall',
+        'tags': ['comedy', 'science', 'nerd culture', 'sitcom']
     }
 }
 
