@@ -107,7 +107,7 @@
     .tick.bl { bottom: 8px; left: 8px; border-right: 0; border-top: 0; }
     .tick.br { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }
 
-    /* Top rail: continuity clock left, station bug right */
+    /* Top rail: the name left, the station bug right */
     .rail {
       display: flex;
       align-items: center;
@@ -116,25 +116,6 @@
       min-width: 0;
       border-bottom: 1px solid var(--rule);
       padding-bottom: 12px;
-    }
-
-    .clock {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-      min-width: 0;
-      font-family: 'Azeret Mono', ui-monospace, monospace;
-      font-size: 0.8125rem;
-      letter-spacing: 0.06em;
-      color: var(--fg-dim);
-    }
-    .clock time { color: var(--fg); font-weight: 500; white-space: nowrap; }
-    .clock .live { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; color: var(--ident-ink); }
-    .clock .live::before {
-      content: "";
-      width: 7px; height: 7px;
-      background: var(--ident);
-      border-radius: 50%;
     }
 
     .bug {
@@ -256,6 +237,9 @@
 
     .wordmark {
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
       font-family: 'Archivo', system-ui, sans-serif;
       font-size: 0.6875rem;
       font-weight: 600;
@@ -408,9 +392,7 @@
         gap: 0;
         padding-bottom: 26px;
       }
-      .clock { gap: 10px; min-width: 0; }
-      .wordmark { display: none; }
-      .clock #count { display: none; }
+      .wordmark { font-size: 0.625rem; letter-spacing: 0.12em; }
       .bug-no, .bug-name { font-size: 0.625rem; letter-spacing: 0.12em; }
       .stage { aspect-ratio: 16 / 9; height: auto; flex: 0 0 auto; }
       .lower-third {
@@ -456,13 +438,14 @@
 THESIS: Television announces what is on next; it never asks you to browse. This
 surface refuses the library, the grid and the gradient scrim, and hands over one
 programme already chosen.
-OWN-WORLD: Broadcast continuity. Paper ground, safe-area ticks, a running clock, a
-station bug, and one saturated ident colour per show filling whole fields — the
+OWN-WORLD: Broadcast continuity. Paper ground, safe-area ticks, a station bug,
+and one saturated ident colour per show filling whole fields — the
 channel block and the lower third — never an accent. Expanded Archivo caps for
 titles, Azeret Mono for every number.
 STORY: The visitor sees a still they recognise, reads the title off the lower
 third, and either starts watching or takes the next one at no cost.
-FIRST VIEWPORT: Rail with clock and bug; the still edge to edge beneath it; the
+FIRST VIEWPORT: Rail with the name and the bug; the still edge to edge below;
+the
 lower third seated on the still's bottom-left carrying season/episode in the
 ident block and the title at display scale; synopsis, quote, meta and the NEXT
 control on the rail below.
@@ -479,12 +462,7 @@ provenance.
     <span class="tick bl"></span><span class="tick br"></span>
 
     <header class="rail">
-      <div class="clock">
-        <span class="wordmark">Random Episode Generator</span>
-        <span class="live">On now</span>
-        <time id="clock" datetime="">--:--:--</time>
-        <span id="count">{{ ep.total }} in rotation</span>
-      </div>
+      <span class="wordmark">Random Episode Generator</span>
       <div class="bug">
         <span class="bug-no" id="bugNo">CH {{ ep.channel }}</span>
         <span class="bug-name" id="bugName">{{ ep.show }}</span>
@@ -554,17 +532,6 @@ provenance.
   const nextLabel = document.getElementById('nextLabel');
   const announce = document.getElementById('announce');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-  /* Continuity clock: the rail always shows real time, ticking */
-  const clock = document.getElementById('clock');
-  function tick() {
-    const d = new Date();
-    const p = (n) => String(n).padStart(2, '0');
-    clock.textContent = p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
-    clock.setAttribute('datetime', d.toISOString());
-  }
-  tick();
-  setInterval(tick, 1000);
 
   /* Title words rise in sequence when a new programme is announced */
   function setTitle(text, animate) {

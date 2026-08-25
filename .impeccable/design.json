@@ -72,7 +72,7 @@
         "role": "neutral",
         "displayName": "Broadcast White",
         "canonical": "#0B1219",
-        "note": "Titles on the ground, clock numerals, synopsis, meta values, station name.",
+        "note": "Titles on the ground, synopsis, meta values, station name.",
         "tonalRamp": [
           "oklch(0.15 0.005 240)",
           "oklch(0.26 0.005 240)",
@@ -88,7 +88,7 @@
         "role": "neutral",
         "displayName": "Muted Signal",
         "canonical": "#59636F",
-        "note": "Announcer quote, field labels, keyboard hint, clock supporting words.",
+        "note": "Announcer quote, field labels, keyboard hint.",
         "tonalRamp": [
           "oklch(0.15 0.025 245)",
           "oklch(0.26 0.025 245)",
@@ -292,7 +292,7 @@
       },
       "numeric": {
         "displayName": "Numeric",
-        "purpose": "The clock, the bug's channel number and every meta value. Supporting words sit at weight 400 in Muted Signal; the value steps to 500 in Broadcast White."
+        "purpose": "The bug's channel number, the season and episode, and every meta value."
       },
       "numeric-micro": {
         "displayName": "Numeric Micro",
@@ -386,14 +386,6 @@
       "css": ".ds-bug { display: inline-flex; align-items: stretch; min-width: 0; border: 1px solid var(--rule, #C6CCD3); border-radius: 0; } .ds-bug-no { background: var(--ident, #FF4B12); color: var(--on-ident, #07101A); font-family: 'Azeret Mono', ui-monospace, monospace; font-weight: 500; font-size: 0.8125rem; font-variant-numeric: tabular-nums; padding: 7px 10px; transition: background 260ms cubic-bezier(0.16,1,0.3,1); } .ds-bug-name { padding: 7px 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg, #0B1219); align-self: center; }"
     },
     {
-      "name": "Continuity Clock",
-      "kind": "custom",
-      "refersTo": null,
-      "description": "The rail's left cluster: wordmark, ident status dot with 'On now', a live ticking time, and the rotation count. Tabular figures keep the row from jittering.",
-      "html": "<div class=\"ds-clock\"><span class=\"ds-clock-wordmark\">Random Episode Generator</span><span class=\"ds-clock-live\">On now</span><time datetime=\"\">02:36:06</time><span>717 in rotation</span></div>",
-      "css": ".ds-clock { display: flex; align-items: baseline; gap: 14px; min-width: 0; font-family: 'Azeret Mono', ui-monospace, monospace; font-size: 0.8125rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; color: var(--fg-dim, #59636F); } .ds-clock time { color: var(--fg, #0B1219); font-weight: 500; } .ds-clock-wordmark { font-family: 'Archivo', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg, #0B1219); white-space: nowrap; } .ds-clock-live { display: inline-flex; align-items: center; gap: 7px; color: var(--ident-ink, #B23107); } .ds-clock-live::before { content: \"\"; width: 7px; height: 7px; background: var(--ident, #FF4B12); border-radius: 50%; }"
-    },
-    {
       "name": "Meta Block",
       "kind": "custom",
       "refersTo": null,
@@ -428,12 +420,12 @@
   ],
   "narrative": {
     "northStar": "The Continuity Booth",
-    "overview": "This is the room between programmes. Not the listings page, not the library, not the poster wall \u2014 the booth where the next thing is already cued and someone tells you what it is. Everything on the surface is furniture from that room, rendered as working chrome rather than decoration: an ink ground the colour of an unlit monitor, four safe-area brackets at the corners of the composition, a clock that actually ticks against the system time, a station bug carrying the channel number and the show's name, and a lower third that seats itself on the bottom-left of the still and announces the title. The still is the largest thing on screen because recognition is the fastest route to a yes.\n\nThe system's whole colour argument is the ident. Each show ships one saturated hue that fills complete rectangles \u2014 the title plate, the bug's channel chip, the NEXT button \u2014 and swaps in a single beat when the channel changes. It is never a tint, never a border, never a 4px underline. The rest of the palette is four steps of ink and two steps of light, joined by 1px hairlines. There is no shadow anywhere in the build; depth is carried by the black stage well, the hairline, and the ident plate physically overlapping the image.\n\nDensity is high but not busy: on desktop the composition is exactly one viewport tall and never scrolls, which means every fact about the episode \u2014 title, season and episode, summary, quote, air date, rating, runtime \u2014 and the only control are all in view at once. Confirmed refusals, all visible in the build's own material: no gradient scrim under type, no rounded corners, no card that could be repeated into a grid, no second control, no cross-fade.",
+    "overview": "This is the room between programmes. Not the listings page, not the library, not the poster wall \u2014 the booth where the next thing is already cued and someone tells you what it is. Everything on the surface is furniture from that room, rendered as working chrome rather than decoration: an ink ground the colour of an unlit monitor, four safe-area brackets at the corners of the composition, a station bug carrying the channel number and the show's name, and a lower third that seats itself on the bottom-left of the still and announces the title. The still is the largest thing on screen because recognition is the fastest route to a yes.\n\nThe system's whole colour argument is the ident. Each show ships one saturated hue that fills complete rectangles \u2014 the title plate, the bug's channel chip, the NEXT button \u2014 and swaps in a single beat when the channel changes. It is never a tint, never a border, never a 4px underline. The rest of the palette is four steps of ink and two steps of light, joined by 1px hairlines. There is no shadow anywhere in the build; depth is carried by the black stage well, the hairline, and the ident plate physically overlapping the image.\n\nDensity is high but not busy: on desktop the composition is exactly one viewport tall and never scrolls, which means every fact about the episode \u2014 title, season and episode, summary, quote, air date, rating, runtime \u2014 and the only control are all in view at once. Confirmed refusals, all visible in the build's own material: no gradient scrim under type, no rounded corners, no card that could be repeated into a grid, no second control, no cross-fade.",
     "keyCharacteristics": [
       "Ink ground, square corners, 1px hairlines, and not one shadow.",
       "One saturated ident per show, filling whole fields rather than accenting them.",
       "Expanded Archivo caps for the title; Azeret Mono for every number the interface states.",
-      "Broadcast furniture as working chrome: safe-area brackets, ticking clock, station bug.",
+      "Broadcast furniture as working chrome: safe-area brackets, station bug.",
       "A desktop frame locked to 100dvh \u2014 the page never scrolls, the synopsis does.",
       "Cuts and slides only; content never cross-fades from old to new.",
       "Exactly one control, reachable by pointer or by N / Space."
@@ -456,7 +448,7 @@
       },
       {
         "name": "The Numbers Are Mono Rule",
-        "body": "Every number the interface states about the programme is Azeret Mono: the clock, the channel, the season and episode, the air date, the rating, the runtime, the rotation count, the key caps. Numerals inside prose and inside episode titles stay in Archivo, because there they are language, not data. font-variant-numeric: tabular-nums is set globally so a ticking clock never shifts its neighbours.",
+        "body": "Every number the interface states about the programme is Azeret Mono: the channel, the season and episode, the air date, the rating, the runtime, the key caps. Numerals inside prose and inside episode titles stay in Archivo, because there they are language, not data. font-variant-numeric: tabular-nums is set globally so a changing value never shifts its neighbours.",
         "section": "typography"
       },
       {

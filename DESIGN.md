@@ -131,7 +131,7 @@ components:
 
 **Creative North Star: "The Continuity Booth"**
 
-This is the room between programmes. Not the listings page, not the library, not the poster wall — the booth where the next thing is already cued and someone tells you what it is. Everything on the surface is furniture from that room, rendered as working chrome rather than decoration: a paper ground the colour of a lit studio wall, four safe-area brackets at the corners of the composition, a clock that actually ticks against the system time, a station bug carrying the channel number and the show's name, and a lower third that seats itself on the bottom-left of the still and announces the title. The still is the largest thing on screen because recognition is the fastest route to a yes.
+This is the room between programmes. Not the listings page, not the library, not the poster wall — the booth where the next thing is already cued and someone tells you what it is. Everything on the surface is furniture from that room, rendered as working chrome rather than decoration: a paper ground the colour of a lit studio wall, four safe-area brackets at the corners of the composition, a station bug carrying the channel number and the show's name, and a lower third that seats itself on the bottom-left of the still and announces the title. The still is the largest thing on screen because recognition is the fastest route to a yes.
 
 The system's whole colour argument is the ident. Each show ships one saturated hue that fills complete rectangles — the title plate, the bug's channel chip, the NEXT button — and swaps in a single beat when the channel changes. It is never a tint, never a border, never a 4px underline. The rest of the palette is four steps of paper and two steps of ink, joined by 1px hairlines. There is no shadow anywhere in the build; depth is carried by the black stage well, the hairline, and the ident plate physically overlapping the image.
 
@@ -141,7 +141,7 @@ Density is high but not busy: on desktop the composition is exactly one viewport
 - Ink ground, square corners, 1px hairlines, and not one shadow.
 - One saturated ident per show, filling whole fields rather than accenting them.
 - Expanded Archivo caps for the title; Azeret Mono for every number the interface states.
-- Broadcast furniture as working chrome: safe-area brackets, ticking clock, station bug.
+- Broadcast furniture as working chrome: safe-area brackets, station bug.
 - A desktop frame locked to `100dvh` — the page never scrolls, the synopsis does.
 - Cuts and slides only; content never cross-fades from old to new.
 - Exactly one control, reachable by pointer or by `N` / `Space`.
@@ -154,7 +154,7 @@ Four steps of near-white paper and two steps of near-black ink, interrupted by e
 
 The ident is a runtime slot, not a fixed value. `--ident` and `--ident-ink` are written onto `:root` by the server on first render and rewritten by the client on every draw, so the whole surface re-idents in one 260ms transition. Three pairs exist, one per show, and no fourth may be invented without a fourth show.
 
-- **Broadcast Orange / Deep Orange** (`{colors.ident-office}` / `{colors.ident-office-ink}`): The Office, channel 01. Fills the title plate, the bug chip and the NEXT button; the darkened ink sets the small type, the "On now" label and the ANNOUNCER tag.
+- **Broadcast Orange / Deep Orange** (`{colors.ident-office}` / `{colors.ident-office-ink}`): The Office, channel 01. Fills the title plate, the bug chip and the NEXT button; the darkened ink sets the small type and the ANNOUNCER tag.
 - **Cathode Violet / Deep Violet** (`{colors.ident-friends}` / `{colors.ident-friends-ink}`): Friends, channel 02. Same two jobs.
 - **Test-Card Cyan / Deep Cyan** (`{colors.ident-bbt}` / `{colors.ident-bbt-ink}`): The Big Bang Theory, channel 03. Same two jobs.
 - **Ident Ink** (`{colors.on-ident}`): the near-black that sits *on* an ident field — the episode title on the plate, the label on the button, the channel number in the bug. It also backs the lower third's channel block, which is the one place the near-black becomes a field of its own.
@@ -166,12 +166,12 @@ The ident is a runtime slot, not a fixed value. `--ident` and `--ident-ink` are 
 - **Rack Panel** (`{colors.panel}`): a single job — the scrollbar track. Declared as a token, but it has not earned promotion to a surface-layer scale; do not start layering panels on it without a reason.
 - **Hairline** (`{colors.rule}`): every divider and every border in the system — the rail's underline, the stage frame, the bug's outline, the info section's top rule, the key-cap outline, the scrollbar thumb.
 - **Tick Grey** (`{colors.tick}`): the four safe-area corner brackets only. Non-text, deliberately dim.
-- **Broadcast White** (`{colors.fg}`): titles on the ground, the clock's numerals, synopsis body, meta values, the station name.
-- **Muted Signal** (`{colors.fg-dim}`): the announcer quote, meta field labels, the keyboard hint, and the clock's supporting words.
+- **Broadcast White** (`{colors.fg}`): titles on the ground, synopsis body, meta values, the station name.
+- **Muted Signal** (`{colors.fg-dim}`): the announcer quote, meta field labels, and the keyboard hint.
 
 ### Named Rules
 
-**The Whole-Field Rule.** The ident colour fills a complete rectangle or it does not appear. Plate, channel chip, button — full backgrounds, no exceptions for borders, underlines, tints or icon strokes. Its only sub-field appearances are the 7px "On now" dot, the text caret and the scrollbar thumb on hover, all of which are chrome, not content.
+**The Whole-Field Rule.** The ident colour fills a complete rectangle or it does not appear. Plate, channel chip, button — full backgrounds, no exceptions for borders, underlines, tints or icon strokes. Its only sub-field appearances are the text caret and the scrollbar thumb on hover, both of which are chrome, not content.
 
 **The Two-Tint Rule.** Every show ships a pair. The saturated `--ident` only ever fills; the darkened `--ident-ink` only ever draws — small text and the focus ring — because it is the shade of that hue that clears 4.5:1 against the paper ground. Never set type in `--ident` on the ground; never fill a field with `--ident-ink`.
 
@@ -194,12 +194,12 @@ The ident is a runtime slot, not a fixed value. `--ident` and `--ident-ink` are 
 - **Action** (`{typography.action}`, uppercase): the NEXT button label — the one place besides the title that touches the width axis.
 - **Label Station** (`{typography.label-station}`, uppercase): the show name in the station bug.
 - **Label** (`{typography.label}`, uppercase): field labels — FIRST AIRED, RATING, RUNTIME, ANNOUNCER. The wordmark sits one step up at `0.6875rem` on the same 0.18em tracking.
-- **Numeric** (`{typography.numeric}`): the clock, the channel number in the bug, and every meta value. The clock's supporting words sit at weight 400 in Muted Signal; the value itself steps to 500 in Broadcast White.
+- **Numeric** (`{typography.numeric}`): the channel number in the bug, the season and episode, and every meta value.
 - **Numeric Micro** (`{typography.numeric-micro}`): the keyboard hint and its key caps.
 
 ### Named Rules
 
-**The Numbers Are Mono Rule.** Every number the interface states about the programme is Azeret Mono: the clock, the channel, the season and episode, the air date, the rating, the runtime, the rotation count, the key caps. Numerals inside prose and inside episode titles stay in Archivo, because there they are language, not data. `font-variant-numeric: tabular-nums` is set globally so a ticking clock never shifts its neighbours.
+**The Numbers Are Mono Rule.** Every number the interface states about the programme is Azeret Mono: the channel, the season and episode, the air date, the rating, the runtime, the key caps. Numerals inside prose and inside episode titles stay in Archivo, because there they are language, not data. `font-variant-numeric: tabular-nums` is set globally so a changing value never shifts its neighbours.
 
 **The Width Axis Rule.** Emphasis comes from width before it comes from size. The title runs `wdth` 118 at weight 800; the button runs `wdth` 112 at weight 700. Nothing else in the system touches the axis — a new element gets emphasis from case and tracking, not by widening.
 
@@ -209,7 +209,7 @@ The ident is a runtime slot, not a fixed value. `--ident` and `--ident-ink` are 
 
 The composition is a three-row grid inside a safe area. `.broadcast` is `height: 100dvh` with `padding: {spacing.inset}` and `grid-template-rows: {spacing.rail} minmax(46vh, 1fr) auto`, rows separated by `{spacing.stack}`. Four 16px L-brackets are absolutely positioned 8px from each viewport corner, marking the safe area the way a monitor's overlay would — built from a 1px `{colors.tick}` border with two sides removed, `pointer-events: none`.
 
-**Row 1, the rail** (60px): the clock cluster left — wordmark, "On now" with its ident dot, the live time, the rotation count — and the station bug right, pushed apart with `justify-content: space-between` and closed by a 1px bottom hairline at 12px.
+**Row 1, the rail** (60px): the wordmark left and the station bug right, pushed apart with `justify-content: space-between` and closed by a 1px bottom hairline at 12px. The rail states what this is and what came up, and nothing else.
 
 **Row 2, the programme**: the stage flexes to fill, framed by a 1px hairline over `#000`. The lower third is absolutely positioned at the stage's bottom-left, capped at `min(100%, 62ch)`, overlapping the image rather than sitting under it.
 
@@ -219,7 +219,7 @@ The spacing rhythm is a loose 2px-resolution set rather than a strict 8pt grid; 
 
 **Responsive behaviour.** Three breakpoints, all of them changes of state rather than of identity:
 
-- **≤900px**: `--rail` drops to 44px and `--inset` to 12px, the grid gap goes to 0 with `align-content: start`, and the page starts scrolling. The stage takes `aspect-ratio: 16 / 9` instead of flexing. The lower third leaves the image and becomes a static block directly beneath it, gaining a 1px hairline on three sides. The info column collapses to one column, the button goes full width, and the wordmark, the rotation count and the keyboard hint are hidden — the three items that only make sense with a keyboard and room to spare.
+- **≤900px**: `--rail` drops to 44px and `--inset` to 12px, the grid gap goes to 0 with `align-content: start`, and the page starts scrolling. The stage takes `aspect-ratio: 16 / 9` instead of flexing. The lower third leaves the image and becomes a static block directly beneath it, gaining a 1px hairline on three sides. The info column collapses to one column, the button goes full width, the wordmark steps down to 0.625rem, and the keyboard hint is hidden — it only makes sense with a keyboard.
 - **≥901px and ≤820px tall**: the title's clamp tightens, the synopsis cap comes down to `6.4em`, and the lower third's padding contracts. The frame stays locked to the viewport.
 - **≥901px and ≤640px tall**: the frame gives up its fixed height (`height: auto; min-height: 100dvh`), the page scrolls, and the synopsis cap is released.
 
@@ -243,7 +243,7 @@ The single gradient in the system is transient and carries no content: the roll 
 
 ## Shapes
 
-Every rectangle in the system is square. No element declares a `border-radius` except the 7px "On now" dot, which is a circle at 50%. Borders are always exactly 1px and always `{colors.rule}`, so the whole surface is drawn with one weight of line; the only other stroke widths are the 2px focus ring and the 2.4px bar inside the NEXT glyph.
+Every rectangle in the system is square. No element declares a `border-radius` anywhere. Borders are always exactly 1px and always `{colors.rule}`, so the whole surface is drawn with one weight of line; the only other stroke widths are the 2px focus ring and the 2.4px bar inside the NEXT glyph.
 
 The recurring silhouette is the **stacked bar**: two flush rectangles of different fills sharing a full-height edge with no gap, no radius and no seam. It appears twice — the station bug (ident chip + outlined name) and the lower third (near-black channel block + ident plate) — and it is the shape a new composite element should reach for.
 
@@ -298,9 +298,6 @@ The system's centrepiece. A stacked bar seated on the still's bottom-left, cappe
 
 - **Style:** inline mono text in a 1px hairline box at `1px 5px`, no fill, no radius, inside the keyboard hint line. Hidden under 900px.
 
-### Continuity Clock
-
-- **Style:** a baseline-aligned mono row with a 14px gap — wordmark, the ident dot with "On now" in ident ink, the live `<time>` in Broadcast Ink at weight 500, then the rotation count in Muted Signal. Updated every second from system time with a matching ISO `datetime` attribute; tabular figures keep the row from jittering.
 
 ### Channel Change (signature transition)
 
@@ -340,7 +337,7 @@ A failed draw never empties the screen. The current still, title, meta and quote
 - **Do** gate a still swap on `img.decode()` so the cut lands on a decoded frame, and keep the roll sweep over the moment of the cut.
 - **Do** give every new focusable the 2px `{colors.ident-ink}` ring at `outline-offset: 3px`.
 - **Do** render a missing value as an em dash and keep the field visible.
-- **Do** hide the wordmark, rotation count and keyboard hint under 900px rather than shrinking them further.
+- **Do** hide the keyboard hint under 900px rather than shrinking it further.
 
 ### Don't:
 
