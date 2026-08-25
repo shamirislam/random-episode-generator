@@ -209,7 +209,7 @@ The ident is a runtime slot, not a fixed value. `--ident` and `--ident-ink` are 
 
 The composition is a three-row grid inside a safe area. `.broadcast` is `height: 100dvh` with `padding: {spacing.inset}` and `grid-template-rows: {spacing.rail} minmax(46vh, 1fr) auto`, rows separated by `{spacing.stack}`. Four 16px L-brackets are absolutely positioned 8px from each viewport corner, marking the safe area the way a monitor's overlay would — built from a 1px `{colors.tick}` border with two sides removed, `pointer-events: none`.
 
-**Row 1, the rail** (60px): the wordmark left and the station bug right, pushed apart with `justify-content: space-between` and closed by a 1px bottom hairline at 12px. The rail states what this is and what came up, and nothing else.
+**Row 1, the rail** (60px): the wordmark left and the station bug right, pushed apart with `justify-content: space-between` and closed by a 1px bottom hairline at 12px. The rail states what this is and what came up, and nothing else; the bug is also the only place the visitor can change what is drawn.
 
 **Row 2, the programme**: the stage flexes to fill, framed by a 1px hairline over `#000`. The lower third is absolutely positioned at the stage's bottom-left, capped at `min(100%, 62ch)`, overlapping the image rather than sitting under it.
 
@@ -270,9 +270,17 @@ Every component is either a fill or an outline; there is no third treatment. Fil
 
 ### Station Bug
 
-- **Style:** a stacked bar boxed in a 1px hairline. Left cell is the ident-filled channel chip (`CH 01`) in mono; right cell is the show name in tracked uppercase Archivo on transparent ground, `align-self: center`, truncating with an ellipsis rather than wrapping.
-- **State:** the chip's `background` transitions over 260ms when the channel changes. On a failed draw the chip's text becomes `OFF AIR` and keeps the previous show's colour.
-- **Mobile:** both cells drop to `0.625rem` with tighter 0.12em tracking.
+- **Style:** a stacked bar boxed in a 1px hairline, rendered as a `<button>` with the browser's chrome reset off. Left cell is the ident-filled channel chip (`CH 01`) in mono; middle cell is the show name in tracked uppercase Archivo, truncating with an ellipsis rather than wrapping; right cell is an 9x6 chevron in Muted Signal that flips with `scaleY(-1)` when the list is open.
+- **State:** the chip's `background` transitions over 260ms when the channel changes. Hover lifts the hairline to `{colors.tick}`. On a failed draw the chip's text becomes `OFF AIR` and keeps the previous show's colour.
+- **Mobile:** both cells drop to `0.625rem` with tighter 0.12em tracking, and the wordmark leaves the rail so the bug has room for a full show name.
+
+### Channel List
+
+- **Style:** a square panel anchored under the bug's right edge, `min-width: 268px`, ground fill, boxed in a 1px `{colors.tick}` hairline one step darker than the rest of the surface so it reads as sitting above the page rather than in it. Rows are separated by 1px `{colors.rule}` hairlines, the last one omitted.
+- **Row:** an ident-filled channel chip, the show name in tracked uppercase, and the episode count in mono Muted Signal, pushed apart so the counts align down the right edge. The first row is `ALL / Every channel / 717`, its chip filled in `{colors.fg}` because every channel is not one channel's colour.
+- **State:** the selected row and any hovered row take `{colors.panel}`; selection is carried by `aria-checked` on `role="menuitemradio"`, so the checked row survives a redraw.
+- **Motion:** opens with a 150ms `clip-path` wipe from the top edge. Nothing fades — the same rule the channel change follows.
+- **Keyboard:** the bug toggles with Enter or Space and takes `aria-expanded`; the open list focuses the checked row, moves with Up and Down, closes on Escape and returns focus to the bug. A click outside closes it without stealing focus.
 
 ### Lower Third (signature component)
 

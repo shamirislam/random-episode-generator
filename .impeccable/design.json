@@ -416,6 +416,14 @@
       "description": "Four 16px corner brackets marking the composition's safe area \u2014 the system's one open form. Non-interactive.",
       "html": "<div class=\"ds-safe\"><span class=\"ds-tick tl\"></span><span class=\"ds-tick tr\"></span><span class=\"ds-tick bl\"></span><span class=\"ds-tick br\"></span></div>",
       "css": ".ds-safe { position: relative; min-height: 120px; min-width: 220px; background: var(--ground, #F1F3F5); } .ds-tick { position: absolute; width: 16px; height: 16px; border: 1px solid var(--tick, #7E8894); pointer-events: none; } .ds-tick.tl { top: 8px; left: 8px; border-right: 0; border-bottom: 0; } .ds-tick.tr { top: 8px; right: 8px; border-left: 0; border-bottom: 0; } .ds-tick.bl { bottom: 8px; left: 8px; border-right: 0; border-top: 0; } .ds-tick.br { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }"
+    },
+    {
+      "name": "Channel List",
+      "purpose": "Tunes the draw to one show or back to all three, opened from the station bug.",
+      "anatomy": "Square panel under the bug's right edge; rows of ident chip, show name, episode count; an ALL row at the top filled in fg.",
+      "states": "Checked row and hovered row take panel; selection carried by aria-checked on role=menuitemradio.",
+      "motion": "150ms clip-path wipe from the top edge; nothing fades.",
+      "css": ".channels { position: absolute; top: calc(100% + 6px); right: 0; min-width: 268px; background: var(--ground, #F1F3F5); border: 1px solid var(--tick, #7E8894); }"
     }
   ],
   "narrative": {

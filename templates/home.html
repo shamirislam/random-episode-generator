@@ -118,12 +118,94 @@
       padding-bottom: 12px;
     }
 
+    .bug-wrap { position: relative; flex: 0 1 auto; min-width: 0; }
+
     .bug {
       display: flex;
       align-items: stretch;
-      flex: 0 1 auto;
+      width: 100%;
       min-width: 0;
+      padding: 0;
+      background: none;
       border: 1px solid var(--rule);
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      transition: border-color 160ms var(--cut);
+    }
+    .bug:hover { border-color: var(--tick); }
+    .bug-caret {
+      display: flex;
+      align-items: center;
+      padding: 0 11px 0 3px;
+      color: var(--fg-dim);
+    }
+    .bug[aria-expanded="true"] .bug-caret { transform: scaleY(-1); }
+
+    /* The channel list: the set this surface draws from, stated plainly */
+    .channels {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      z-index: 20;
+      min-width: 268px;
+      max-width: 86vw;
+      background: var(--ground);
+      border: 1px solid var(--tick);
+      clip-path: inset(0 0 0 0);
+      animation: channels-in 150ms var(--cut);
+    }
+    .channels[hidden] { display: none; }
+    @keyframes channels-in {
+      from { clip-path: inset(0 0 100% 0); }
+      to { clip-path: inset(0 0 0 0); }
+    }
+
+    .channel-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      padding: 9px 12px;
+      background: none;
+      border: 0;
+      border-bottom: 1px solid var(--rule);
+      font: inherit;
+      color: var(--fg);
+      text-align: left;
+      cursor: pointer;
+    }
+    .channel-row:last-child { border-bottom: 0; }
+    .channel-row:hover { background: var(--panel); }
+    .channel-row[aria-checked="true"] { background: var(--panel); }
+
+    .row-no {
+      flex: 0 0 auto;
+      padding: 4px 7px;
+      background: var(--fg);
+      color: var(--ground);
+      font-family: 'Azeret Mono', ui-monospace, monospace;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .row-no:not(.row-no-all) { color: var(--on-ident); }
+    .row-name {
+      flex: 1 1 auto;
+      min-width: 0;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .row-count {
+      flex: 0 0 auto;
+      font-family: 'Azeret Mono', ui-monospace, monospace;
+      font-size: 0.6875rem;
+      color: var(--fg-dim);
     }
     .bug-no {
       background: var(--ident);
@@ -136,7 +218,7 @@
       transition: background 260ms var(--cut);
     }
     .bug-name {
-      padding: 7px 14px;
+      padding: 7px 10px 7px 14px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -392,7 +474,9 @@
         gap: 0;
         padding-bottom: 26px;
       }
-      .wordmark { font-size: 0.625rem; letter-spacing: 0.12em; }
+      /* The bug is a control now and needs the room; the page title carries the name */
+      .wordmark { display: none; }
+      .rail { justify-content: flex-end; }
       .bug-no, .bug-name { font-size: 0.625rem; letter-spacing: 0.12em; }
       .stage { aspect-ratio: 16 / 9; height: auto; flex: 0 0 auto; }
       .lower-third {
@@ -463,9 +547,32 @@ provenance.
 
     <header class="rail">
       <span class="wordmark">Random Episode Generator</span>
-      <div class="bug">
-        <span class="bug-no" id="bugNo">CH {{ ep.channel }}</span>
-        <span class="bug-name" id="bugName">{{ ep.show }}</span>
+      <div class="bug-wrap">
+        <button class="bug" id="bugBtn" type="button"
+                aria-haspopup="true" aria-expanded="false" aria-controls="channels">
+          <span class="bug-no" id="bugNo">CH {{ ep.channel }}</span>
+          <span class="bug-name" id="bugName">{{ ep.show }}</span>
+          <span class="bug-caret" aria-hidden="true">
+            <svg width="9" height="6" viewBox="0 0 9 6" fill="none">
+              <path d="M1 1l3.5 3.5L8 1" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </span>
+        </button>
+        <div class="channels" id="channels" role="menu" aria-label="Channels" hidden>
+          <button class="channel-row" type="button" role="menuitemradio" aria-checked="true" data-slug="">
+            <span class="row-no row-no-all">ALL</span>
+            <span class="row-name">Every channel</span>
+            <span class="row-count">{{ ep.total }}</span>
+          </button>
+          {% for ch in channels %}
+          <button class="channel-row" type="button" role="menuitemradio" aria-checked="false"
+                  data-slug="{{ ch.slug }}" data-color="{{ ch.color }}" data-ink="{{ ch.ink }}">
+            <span class="row-no" style="background: {{ ch.color }}">CH {{ ch.channel }}</span>
+            <span class="row-name">{{ ch.name }}</span>
+            <span class="row-count">{{ ch.count }}</span>
+          </button>
+          {% endfor %}
+        </div>
       </div>
     </header>
 
@@ -583,6 +690,55 @@ provenance.
   let busy = false;
   let offAir = false;
 
+  /* The channel selector: the bug states what is on and opens the list */
+  const bugBtn = document.getElementById('bugBtn');
+  const menu = document.getElementById('channels');
+  const rows = Array.prototype.slice.call(menu.querySelectorAll('.channel-row'));
+  let channel = '';
+
+  function openMenu() {
+    menu.hidden = false;
+    bugBtn.setAttribute('aria-expanded', 'true');
+    const current = rows.filter(function (r) { return r.dataset.slug === channel; })[0];
+    (current || rows[0]).focus();
+  }
+
+  function closeMenu(refocus) {
+    menu.hidden = true;
+    bugBtn.setAttribute('aria-expanded', 'false');
+    if (refocus) bugBtn.focus();
+  }
+
+  bugBtn.addEventListener('click', function () {
+    if (menu.hidden) { openMenu(); } else { closeMenu(true); }
+  });
+
+  rows.forEach(function (row, i) {
+    row.addEventListener('click', function () {
+      channel = row.dataset.slug;
+      rows.forEach(function (r) {
+        r.setAttribute('aria-checked', r === row ? 'true' : 'false');
+      });
+      closeMenu(true);
+      draw();
+    });
+    row.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const step = e.key === 'ArrowDown' ? 1 : -1;
+        rows[(i + step + rows.length) % rows.length].focus();
+      }
+    });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !menu.hidden) { e.preventDefault(); closeMenu(true); }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!menu.hidden && !e.target.closest('.bug-wrap')) closeMenu(false);
+  });
+
   /* The channel change: the bar retracts, the frame rolls, the still cuts */
   async function draw() {
     if (busy) return;
@@ -591,8 +747,9 @@ provenance.
     nextLabel.textContent = 'Tuning';
 
     try {
-      const res = await fetch('/next?from=' + encodeURIComponent(app.dataset.episodeId || ''),
-        { headers: { 'Accept': 'application/json' } });
+      const query = '/next?from=' + encodeURIComponent(app.dataset.episodeId || '') +
+        (channel ? '&show=' + encodeURIComponent(channel) : '');
+      const res = await fetch(query, { headers: { 'Accept': 'application/json' } });
       if (!res.ok) throw new Error('draw failed');
       const ep = await res.json();
 

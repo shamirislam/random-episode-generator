@@ -53,6 +53,16 @@ def read_rating(value):
 for _show, _info in SHOWS.items():
   episode_data[_show] = read_csv(_info["slug"])
 
+# One flat pool across every show. Choosing a show first and an episode second
+# would weight each show equally regardless of how many episodes it has, which
+# makes an episode of the shortest run far likelier than one of the longest.
+all_episodes = [
+  (show, row)
+  for show, rows in episode_data.items()
+  if rows
+  for row in rows
+]
+
 # Iconic quotes shown alongside the episode
 quotes = {
   "The Office": [
@@ -85,22 +95,32 @@ quotes = {
 }
 
 
-def draw_episode(exclude=None):
-  """Pick one random episode from any show, as a flat dict for the template."""
-  available = [name for name, rows in episode_data.items() if rows]
-  if not available:
+def show_for_slug(slug):
+  """Map a channel slug back to its show name, ignoring anything unknown."""
+  for name, info in SHOWS.items():
+    if info["slug"] == slug:
+      return name
+  return None
+
+
+def draw_episode(exclude=None, show=None):
+  """Pick one random episode, as a flat dict for the template.
+
+  `show` tunes the draw to a single channel; without it every channel is in
+  the pool.
+  """
+  pool = [(show, row) for row in episode_data[show]] if show in episode_data and episode_data[show] \
+    else all_episodes
+  if not pool:
     return None
 
-  chosen_show = random.choice(available)
-  episodes = episode_data[chosen_show]
-
-  episode = random.choice(episodes)
+  chosen_show, episode = random.choice(pool)
   # Avoid repeating the episode the visitor is already looking at
-  if exclude and len(episodes) > 1:
-    for _ in range(5):
+  if exclude and len(pool) > 1:
+    for _ in range(8):
       if f"{chosen_show}|{episode[1]}|{episode[2]}" != exclude:
         break
-      episode = random.choice(episodes)
+      chosen_show, episode = random.choice(pool)
 
   info = SHOWS[chosen_show]
   return {
@@ -118,8 +138,25 @@ def draw_episode(exclude=None):
     "image_url": episode[7] if len(episode) > 7 else None,
     "quote": random.choice(quotes.get(chosen_show, [""])),
     "id": f"{chosen_show}|{episode[1]}|{episode[2]}",
+    "slug": info["slug"],
     "total": sum(len(rows) for rows in episode_data.values() if rows),
   }
+
+
+def channel_list():
+  """Every channel the picker offers, in channel order."""
+  return [
+    {
+      "name": name,
+      "slug": info["slug"],
+      "channel": info["channel"],
+      "color": info["color"],
+      "ink": info["ink"],
+      "count": len(episode_data.get(name) or []),
+    }
+    for name, info in sorted(SHOWS.items(), key=lambda kv: kv[1]["channel"])
+    if episode_data.get(name)
+  ]
 
 
 OFF_AIR = """<!doctype html><html lang="en"><head><meta charset="utf-8">
@@ -139,16 +176,19 @@ are missing from the server.</p></div></body></html>"""
 
 @app.route("/")
 def home():
-  episode = draw_episode()
+  episode = draw_episode(show=show_for_slug(request.args.get("show")))
   if not episode:
     return OFF_AIR, 500
-  return render_template("home.html", ep=episode)
+  return render_template("home.html", ep=episode, channels=channel_list())
 
 
 @app.route("/next")
 def next_episode():
   """Draw for the client so the transition can play without a reload."""
-  episode = draw_episode(exclude=request.args.get("from"))
+  episode = draw_episode(
+    exclude=request.args.get("from"),
+    show=show_for_slug(request.args.get("show")),
+  )
   if not episode:
     return jsonify({"error": "no episodes loaded"}), 500
   return jsonify(episode)
