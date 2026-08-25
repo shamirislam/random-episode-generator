@@ -1,0 +1,9 @@
+# Local environments and tooling — the runtime needs none of it
+venv/
+.venv/
+__pycache__/
+.impeccable/
+.claude/
+.codex/
+.cursor/
+scripts/
