@@ -2,22 +2,22 @@
 name: Random Episode Generator
 description: A broadcast-continuity surface that announces one sitcom episode and hands over the next.
 colors:
-  ground: "#05090E"
-  panel: "#0A1119"
-  rule: "#1B2733"
-  tick: "#44596F"
-  fg: "#F3F6F9"
-  fg-dim: "#93A3B4"
+  ground: "#F1F3F5"
+  panel: "#E3E7EB"
+  rule: "#C6CCD3"
+  tick: "#7E8894"
+  fg: "#0B1219"
+  fg-dim: "#59636F"
   on-ident: "#07101A"
   stage-black: "#000000"
   ident: "#FF4B12"
-  ident-ink: "#FF9166"
+  ident-ink: "#B23107"
   ident-office: "#FF4B12"
-  ident-office-ink: "#FF9166"
+  ident-office-ink: "#B23107"
   ident-friends: "#8B5CF6"
-  ident-friends-ink: "#BCA4FF"
+  ident-friends-ink: "#5B21B6"
   ident-bbt: "#00C2D1"
-  ident-bbt-ink: "#5CE1EC"
+  ident-bbt-ink: "#046070"
 typography:
   display:
     fontFamily: "Archivo, system-ui, sans-serif"
@@ -131,9 +131,9 @@ components:
 
 **Creative North Star: "The Continuity Booth"**
 
-This is the room between programmes. Not the listings page, not the library, not the poster wall — the booth where the next thing is already cued and someone tells you what it is. Everything on the surface is furniture from that room, rendered as working chrome rather than decoration: an ink ground the colour of an unlit monitor, four safe-area brackets at the corners of the composition, a clock that actually ticks against the system time, a station bug carrying the channel number and the show's name, and a lower third that seats itself on the bottom-left of the still and announces the title. The still is the largest thing on screen because recognition is the fastest route to a yes.
+This is the room between programmes. Not the listings page, not the library, not the poster wall — the booth where the next thing is already cued and someone tells you what it is. Everything on the surface is furniture from that room, rendered as working chrome rather than decoration: a paper ground the colour of a lit studio wall, four safe-area brackets at the corners of the composition, a clock that actually ticks against the system time, a station bug carrying the channel number and the show's name, and a lower third that seats itself on the bottom-left of the still and announces the title. The still is the largest thing on screen because recognition is the fastest route to a yes.
 
-The system's whole colour argument is the ident. Each show ships one saturated hue that fills complete rectangles — the title plate, the bug's channel chip, the NEXT button — and swaps in a single beat when the channel changes. It is never a tint, never a border, never a 4px underline. The rest of the palette is four steps of ink and two steps of light, joined by 1px hairlines. There is no shadow anywhere in the build; depth is carried by the black stage well, the hairline, and the ident plate physically overlapping the image.
+The system's whole colour argument is the ident. Each show ships one saturated hue that fills complete rectangles — the title plate, the bug's channel chip, the NEXT button — and swaps in a single beat when the channel changes. It is never a tint, never a border, never a 4px underline. The rest of the palette is four steps of paper and two steps of ink, joined by 1px hairlines. There is no shadow anywhere in the build; depth is carried by the black stage well, the hairline, and the ident plate physically overlapping the image.
 
 Density is high but not busy: on desktop the composition is exactly one viewport tall and never scrolls, which means every fact about the episode — title, season and episode, summary, quote, air date, rating, runtime — and the only control are all in view at once. Confirmed refusals, all visible in the build's own material: no gradient scrim under type, no rounded corners, no card that could be repeated into a grid, no second control, no cross-fade.
 
@@ -148,15 +148,15 @@ Density is high but not busy: on desktop the composition is exactly one viewport
 
 ## Colors
 
-Four steps of near-black ink and two steps of near-white light, interrupted by exactly one saturated hue that belongs to whichever show came up.
+Four steps of near-white paper and two steps of near-black ink, interrupted by exactly one saturated hue that belongs to whichever show came up.
 
 ### Primary
 
 The ident is a runtime slot, not a fixed value. `--ident` and `--ident-ink` are written onto `:root` by the server on first render and rewritten by the client on every draw, so the whole surface re-idents in one 260ms transition. Three pairs exist, one per show, and no fourth may be invented without a fourth show.
 
-- **Broadcast Orange / Signal Orange** (`{colors.ident-office}` / `{colors.ident-office-ink}`): The Office, channel 01. Fills the title plate, the bug chip and the NEXT button; the lightened ink sets the S/E numerals, the "On now" label and the ANNOUNCER tag.
-- **Cathode Violet / Soft Violet** (`{colors.ident-friends}` / `{colors.ident-friends-ink}`): Friends, channel 02. Same two jobs.
-- **Test-Card Cyan / Pale Cyan** (`{colors.ident-bbt}` / `{colors.ident-bbt-ink}`): The Big Bang Theory, channel 03. Same two jobs.
+- **Broadcast Orange / Deep Orange** (`{colors.ident-office}` / `{colors.ident-office-ink}`): The Office, channel 01. Fills the title plate, the bug chip and the NEXT button; the darkened ink sets the small type, the "On now" label and the ANNOUNCER tag.
+- **Cathode Violet / Deep Violet** (`{colors.ident-friends}` / `{colors.ident-friends-ink}`): Friends, channel 02. Same two jobs.
+- **Test-Card Cyan / Deep Cyan** (`{colors.ident-bbt}` / `{colors.ident-bbt-ink}`): The Big Bang Theory, channel 03. Same two jobs.
 - **Ident Ink** (`{colors.on-ident}`): the near-black that sits *on* an ident field — the episode title on the plate, the label on the button, the channel number in the bug. It also backs the lower third's channel block, which is the one place the near-black becomes a field of its own.
 
 ### Neutral
@@ -173,7 +173,7 @@ The ident is a runtime slot, not a fixed value. `--ident` and `--ident-ink` are 
 
 **The Whole-Field Rule.** The ident colour fills a complete rectangle or it does not appear. Plate, channel chip, button — full backgrounds, no exceptions for borders, underlines, tints or icon strokes. Its only sub-field appearances are the 7px "On now" dot, the text caret and the scrollbar thumb on hover, all of which are chrome, not content.
 
-**The Two-Tint Rule.** Every show ships a pair. The saturated `--ident` only ever fills; the lightened `--ident-ink` only ever draws — small text and the focus ring — because it is the tint of that hue that clears 4.5:1 against the ink ground. Never set type in `--ident` on the ground; never fill a field with `--ident-ink`.
+**The Two-Tint Rule.** Every show ships a pair. The saturated `--ident` only ever fills; the darkened `--ident-ink` only ever draws — small text and the focus ring — because it is the shade of that hue that clears 4.5:1 against the paper ground. Never set type in `--ident` on the ground; never fill a field with `--ident-ink`.
 
 **The Black Well Rule.** The stage is `#000`, one step darker than the page. The still fills it edge to edge with `object-fit: cover` and no overlay, no scrim, no vignette, no colour grade.
 
@@ -278,7 +278,7 @@ Every component is either a fill or an outline; there is no third treatment. Fil
 
 The system's centrepiece. A stacked bar seated on the still's bottom-left, capped at `min(100%, 62ch)`.
 
-- **Channel block:** near-black field, ident-ink numerals, season over episode, both zero-padded to two digits.
+- **Channel block:** near-black field, paper numerals, season over episode, both zero-padded to two digits.
 - **Plate:** ident-filled, holding the episode title in near-black display caps, vertically centred, with asymmetric padding that gives the title more room on the right than on the left.
 - **Retract:** on a draw it slides out left — `translateX(calc(-100% - 4px))` over 260ms — and slides back once the new still has cut in.
 - **Mobile:** leaves the image entirely, becomes a static block beneath the stage, and picks up a hairline on left, right and bottom.
@@ -300,7 +300,7 @@ The system's centrepiece. A stacked bar seated on the still's bottom-left, cappe
 
 ### Continuity Clock
 
-- **Style:** a baseline-aligned mono row with a 14px gap — wordmark, the ident dot with "On now" in ident ink, the live `<time>` in Broadcast White at weight 500, then the rotation count in Muted Signal. Updated every second from system time with a matching ISO `datetime` attribute; tabular figures keep the row from jittering.
+- **Style:** a baseline-aligned mono row with a 14px gap — wordmark, the ident dot with "On now" in ident ink, the live `<time>` in Broadcast Ink at weight 500, then the rotation count in Muted Signal. Updated every second from system time with a matching ISO `datetime` attribute; tabular figures keep the row from jittering.
 
 ### Channel Change (signature transition)
 
@@ -332,7 +332,7 @@ A failed draw never empties the screen. The current still, title, meta and quote
 ### Do:
 
 - **Do** fill a complete rectangle with the ident colour or leave it out entirely — plate, channel chip, button. See **The Whole-Field Rule**.
-- **Do** use the paired `--ident-ink` tint whenever that hue has to become type on the ink ground, and keep near-black `{colors.on-ident}` for type on an ident field.
+- **Do** use the paired `--ident-ink` tint whenever that hue has to become type on the paper ground, and keep near-black `{colors.on-ident}` for type on an ident field.
 - **Do** set every stated number in Azeret Mono and every word in Archivo, per **The Numbers Are Mono Rule**.
 - **Do** reach for the width axis before size when a new element needs emphasis (`wdth` 118 / 800 for display, 112 / 700 for actions).
 - **Do** separate regions with a single 1px `{colors.rule}` hairline, the system's only line weight.
@@ -344,7 +344,7 @@ A failed draw never empties the screen. The current still, title, meta and quote
 
 ### Don't:
 
-- **Don't** set type in `--ident` on the ink ground, or fill a field with `--ident-ink`. The two tints do not swap jobs.
+- **Don't** set type in `--ident` on the paper ground, or fill a field with `--ident-ink`. The two tints do not swap jobs.
 - **Don't** put a gradient scrim, dark overlay or backdrop blur under text on the still — the lower third is a solid bar. The only gradient in the system is the transient roll sweep, which never carries content.
 - **Don't** round a corner. Radius is 0px; the one circle is the 7px status dot.
 - **Don't** add a `box-shadow`, glow or blur. Depth is hairline, black well and overlap.

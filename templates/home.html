@@ -46,12 +46,12 @@
     }
 
     :root {
-      --ground: #05090E;
-      --panel: #0A1119;
-      --rule: #1B2733;
-      --tick: #44596F;
-      --fg: #F3F6F9;
-      --fg-dim: #93A3B4;
+      --ground: #F1F3F5;
+      --panel: #E3E7EB;
+      --rule: #C6CCD3;
+      --tick: #7E8894;
+      --fg: #0B1219;
+      --fg-dim: #59636F;
       --ident: {{ ep.color }};
       --ident-ink: {{ ep.ink }};
       --on-ident: #07101A;
@@ -128,8 +128,8 @@
       letter-spacing: 0.06em;
       color: var(--fg-dim);
     }
-    .clock time { color: var(--fg); font-weight: 500; }
-    .clock .live { display: inline-flex; align-items: center; gap: 7px; color: var(--ident-ink); }
+    .clock time { color: var(--fg); font-weight: 500; white-space: nowrap; }
+    .clock .live { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; color: var(--ident-ink); }
     .clock .live::before {
       content: "";
       width: 7px; height: 7px;
@@ -151,6 +151,7 @@
       font-weight: 500;
       font-size: 0.8125rem;
       padding: 7px 10px;
+      white-space: nowrap;
       transition: background 260ms var(--cut);
     }
     .bug-name {
@@ -193,6 +194,7 @@
     }
 
     /* The roll bar: the frame's own scan sweep on a channel change */
+    /* The sweep travels over the photograph, not the page, so it stays light */
     .roll {
       position: absolute;
       inset-inline: 0;
@@ -232,7 +234,7 @@
 
     .channel {
       background: var(--on-ident);
-      color: var(--ident-ink);
+      color: var(--ground);
       font-family: 'Azeret Mono', ui-monospace, monospace;
       font-weight: 500;
       font-size: 1.0625rem;
@@ -241,7 +243,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      transition: color 260ms var(--cut);
     }
 
     .plate {
@@ -455,7 +456,7 @@
 THESIS: Television announces what is on next; it never asks you to browse. This
 surface refuses the library, the grid and the gradient scrim, and hands over one
 programme already chosen.
-OWN-WORLD: Broadcast continuity. Ink ground, safe-area ticks, a running clock, a
+OWN-WORLD: Broadcast continuity. Paper ground, safe-area ticks, a running clock, a
 station bug, and one saturated ident colour per show filling whole fields — the
 channel block and the lower third — never an accent. Expanded Archivo caps for
 titles, Azeret Mono for every number.

@@ -7,142 +7,357 @@
       "ground": {
         "role": "neutral",
         "displayName": "Studio Ink",
-        "canonical": "#05090E",
+        "canonical": "#F1F3F5",
         "note": "The page ground. One uninterrupted field, edge to edge.",
-        "tonalRamp": ["oklch(0.15 0.012 250)", "oklch(0.26 0.012 250)", "oklch(0.37 0.012 250)", "oklch(0.48 0.012 250)", "oklch(0.59 0.012 250)", "oklch(0.70 0.012 250)", "oklch(0.83 0.012 250)", "oklch(0.95 0.012 250)"]
+        "tonalRamp": [
+          "oklch(0.15 0.012 250)",
+          "oklch(0.26 0.012 250)",
+          "oklch(0.37 0.012 250)",
+          "oklch(0.48 0.012 250)",
+          "oklch(0.59 0.012 250)",
+          "oklch(0.70 0.012 250)",
+          "oklch(0.83 0.012 250)",
+          "oklch(0.95 0.012 250)"
+        ]
       },
       "panel": {
         "role": "neutral",
         "displayName": "Rack Panel",
-        "canonical": "#0A1119",
+        "canonical": "#E3E7EB",
         "note": "Single job: the scrollbar track. Declared, but not a surface-layer scale.",
-        "tonalRamp": ["oklch(0.15 0.015 250)", "oklch(0.26 0.015 250)", "oklch(0.37 0.015 250)", "oklch(0.48 0.015 250)", "oklch(0.59 0.015 250)", "oklch(0.70 0.015 250)", "oklch(0.83 0.015 250)", "oklch(0.95 0.015 250)"]
+        "tonalRamp": [
+          "oklch(0.15 0.015 250)",
+          "oklch(0.26 0.015 250)",
+          "oklch(0.37 0.015 250)",
+          "oklch(0.48 0.015 250)",
+          "oklch(0.59 0.015 250)",
+          "oklch(0.70 0.015 250)",
+          "oklch(0.83 0.015 250)",
+          "oklch(0.95 0.015 250)"
+        ]
       },
       "rule": {
         "role": "neutral",
         "displayName": "Hairline",
-        "canonical": "#1B2733",
+        "canonical": "#C6CCD3",
         "note": "Every border and divider in the system, always at 1px.",
-        "tonalRamp": ["oklch(0.15 0.022 245)", "oklch(0.26 0.022 245)", "oklch(0.37 0.022 245)", "oklch(0.48 0.022 245)", "oklch(0.59 0.022 245)", "oklch(0.70 0.022 245)", "oklch(0.83 0.022 245)", "oklch(0.95 0.022 245)"]
+        "tonalRamp": [
+          "oklch(0.15 0.022 245)",
+          "oklch(0.26 0.022 245)",
+          "oklch(0.37 0.022 245)",
+          "oklch(0.48 0.022 245)",
+          "oklch(0.59 0.022 245)",
+          "oklch(0.70 0.022 245)",
+          "oklch(0.83 0.022 245)",
+          "oklch(0.95 0.022 245)"
+        ]
       },
       "tick": {
         "role": "neutral",
         "displayName": "Tick Grey",
-        "canonical": "#44596F",
+        "canonical": "#7E8894",
         "note": "The four safe-area corner brackets only. Non-text, deliberately dim.",
-        "tonalRamp": ["oklch(0.15 0.035 250)", "oklch(0.26 0.035 250)", "oklch(0.37 0.035 250)", "oklch(0.48 0.035 250)", "oklch(0.59 0.035 250)", "oklch(0.70 0.035 250)", "oklch(0.83 0.035 250)", "oklch(0.95 0.035 250)"]
+        "tonalRamp": [
+          "oklch(0.15 0.035 250)",
+          "oklch(0.26 0.035 250)",
+          "oklch(0.37 0.035 250)",
+          "oklch(0.48 0.035 250)",
+          "oklch(0.59 0.035 250)",
+          "oklch(0.70 0.035 250)",
+          "oklch(0.83 0.035 250)",
+          "oklch(0.95 0.035 250)"
+        ]
       },
       "fg": {
         "role": "neutral",
         "displayName": "Broadcast White",
-        "canonical": "#F3F6F9",
+        "canonical": "#0B1219",
         "note": "Titles on the ground, clock numerals, synopsis, meta values, station name.",
-        "tonalRamp": ["oklch(0.15 0.005 240)", "oklch(0.26 0.005 240)", "oklch(0.37 0.005 240)", "oklch(0.48 0.005 240)", "oklch(0.59 0.005 240)", "oklch(0.70 0.005 240)", "oklch(0.83 0.005 240)", "oklch(0.95 0.005 240)"]
+        "tonalRamp": [
+          "oklch(0.15 0.005 240)",
+          "oklch(0.26 0.005 240)",
+          "oklch(0.37 0.005 240)",
+          "oklch(0.48 0.005 240)",
+          "oklch(0.59 0.005 240)",
+          "oklch(0.70 0.005 240)",
+          "oklch(0.83 0.005 240)",
+          "oklch(0.95 0.005 240)"
+        ]
       },
       "fg-dim": {
         "role": "neutral",
         "displayName": "Muted Signal",
-        "canonical": "#93A3B4",
+        "canonical": "#59636F",
         "note": "Announcer quote, field labels, keyboard hint, clock supporting words.",
-        "tonalRamp": ["oklch(0.15 0.025 245)", "oklch(0.26 0.025 245)", "oklch(0.37 0.025 245)", "oklch(0.48 0.025 245)", "oklch(0.59 0.025 245)", "oklch(0.70 0.025 245)", "oklch(0.83 0.025 245)", "oklch(0.95 0.025 245)"]
+        "tonalRamp": [
+          "oklch(0.15 0.025 245)",
+          "oklch(0.26 0.025 245)",
+          "oklch(0.37 0.025 245)",
+          "oklch(0.48 0.025 245)",
+          "oklch(0.59 0.025 245)",
+          "oklch(0.70 0.025 245)",
+          "oklch(0.83 0.025 245)",
+          "oklch(0.95 0.025 245)"
+        ]
       },
       "on-ident": {
         "role": "neutral",
         "displayName": "Ident Ink",
         "canonical": "#07101A",
         "note": "Type on any ident field, and the fill of the lower third's channel block.",
-        "tonalRamp": ["oklch(0.15 0.020 250)", "oklch(0.26 0.020 250)", "oklch(0.37 0.020 250)", "oklch(0.48 0.020 250)", "oklch(0.59 0.020 250)", "oklch(0.70 0.020 250)", "oklch(0.83 0.020 250)", "oklch(0.95 0.020 250)"]
+        "tonalRamp": [
+          "oklch(0.15 0.020 250)",
+          "oklch(0.26 0.020 250)",
+          "oklch(0.37 0.020 250)",
+          "oklch(0.48 0.020 250)",
+          "oklch(0.59 0.020 250)",
+          "oklch(0.70 0.020 250)",
+          "oklch(0.83 0.020 250)",
+          "oklch(0.95 0.020 250)"
+        ]
       },
       "stage-black": {
         "role": "neutral",
         "displayName": "Monitor Black",
         "canonical": "#000000",
         "note": "The stage well behind the still, one step below the page ground.",
-        "tonalRamp": ["oklch(0.15 0 0)", "oklch(0.26 0 0)", "oklch(0.37 0 0)", "oklch(0.48 0 0)", "oklch(0.59 0 0)", "oklch(0.70 0 0)", "oklch(0.83 0 0)", "oklch(0.95 0 0)"]
+        "tonalRamp": [
+          "oklch(0.15 0 0)",
+          "oklch(0.26 0 0)",
+          "oklch(0.37 0 0)",
+          "oklch(0.48 0 0)",
+          "oklch(0.59 0 0)",
+          "oklch(0.70 0 0)",
+          "oklch(0.83 0 0)",
+          "oklch(0.95 0 0)"
+        ]
       },
       "ident": {
         "role": "primary",
         "displayName": "Ident (runtime slot)",
         "canonical": "#FF4B12",
         "note": "Runtime slot. Written onto :root by the server on first render and rewritten by the client on every draw. Holds one of the three saturated show idents; shown here with the channel 01 value. Fills whole fields only.",
-        "tonalRamp": ["oklch(0.15 0.20 40)", "oklch(0.26 0.20 40)", "oklch(0.37 0.20 40)", "oklch(0.48 0.20 40)", "oklch(0.59 0.20 40)", "oklch(0.70 0.20 40)", "oklch(0.83 0.20 40)", "oklch(0.95 0.20 40)"]
+        "tonalRamp": [
+          "oklch(0.15 0.20 40)",
+          "oklch(0.26 0.20 40)",
+          "oklch(0.37 0.20 40)",
+          "oklch(0.48 0.20 40)",
+          "oklch(0.59 0.20 40)",
+          "oklch(0.70 0.20 40)",
+          "oklch(0.83 0.20 40)",
+          "oklch(0.95 0.20 40)"
+        ]
       },
       "ident-ink": {
         "role": "primary",
         "displayName": "Ident Ink Tint (runtime slot)",
-        "canonical": "#FF9166",
+        "canonical": "#B23107",
         "note": "Runtime slot paired with ident. The lightened tint of the same hue, used for small text on the ink ground and for the focus ring. Never fills a field.",
-        "tonalRamp": ["oklch(0.15 0.145 40)", "oklch(0.26 0.145 40)", "oklch(0.37 0.145 40)", "oklch(0.48 0.145 40)", "oklch(0.59 0.145 40)", "oklch(0.70 0.145 40)", "oklch(0.83 0.145 40)", "oklch(0.95 0.145 40)"]
+        "tonalRamp": [
+          "oklch(0.15 0.145 40)",
+          "oklch(0.26 0.145 40)",
+          "oklch(0.37 0.145 40)",
+          "oklch(0.48 0.145 40)",
+          "oklch(0.59 0.145 40)",
+          "oklch(0.70 0.145 40)",
+          "oklch(0.83 0.145 40)",
+          "oklch(0.95 0.145 40)"
+        ]
       },
       "ident-office": {
         "role": "primary",
         "displayName": "Broadcast Orange",
         "canonical": "#FF4B12",
         "note": "The Office, channel 01. Defined in SHOWS in main.py.",
-        "tonalRamp": ["oklch(0.15 0.20 40)", "oklch(0.26 0.20 40)", "oklch(0.37 0.20 40)", "oklch(0.48 0.20 40)", "oklch(0.59 0.20 40)", "oklch(0.70 0.20 40)", "oklch(0.83 0.20 40)", "oklch(0.95 0.20 40)"]
+        "tonalRamp": [
+          "oklch(0.15 0.20 40)",
+          "oklch(0.26 0.20 40)",
+          "oklch(0.37 0.20 40)",
+          "oklch(0.48 0.20 40)",
+          "oklch(0.59 0.20 40)",
+          "oklch(0.70 0.20 40)",
+          "oklch(0.83 0.20 40)",
+          "oklch(0.95 0.20 40)"
+        ]
       },
       "ident-office-ink": {
         "role": "primary",
         "displayName": "Signal Orange",
-        "canonical": "#FF9166",
+        "canonical": "#B23107",
         "note": "The Office tint for small text on the ink ground.",
-        "tonalRamp": ["oklch(0.15 0.145 40)", "oklch(0.26 0.145 40)", "oklch(0.37 0.145 40)", "oklch(0.48 0.145 40)", "oklch(0.59 0.145 40)", "oklch(0.70 0.145 40)", "oklch(0.83 0.145 40)", "oklch(0.95 0.145 40)"]
+        "tonalRamp": [
+          "oklch(0.15 0.145 40)",
+          "oklch(0.26 0.145 40)",
+          "oklch(0.37 0.145 40)",
+          "oklch(0.48 0.145 40)",
+          "oklch(0.59 0.145 40)",
+          "oklch(0.70 0.145 40)",
+          "oklch(0.83 0.145 40)",
+          "oklch(0.95 0.145 40)"
+        ]
       },
       "ident-friends": {
         "role": "primary",
         "displayName": "Cathode Violet",
         "canonical": "#8B5CF6",
         "note": "Friends, channel 02. Defined in SHOWS in main.py.",
-        "tonalRamp": ["oklch(0.15 0.22 292)", "oklch(0.26 0.22 292)", "oklch(0.37 0.22 292)", "oklch(0.48 0.22 292)", "oklch(0.59 0.22 292)", "oklch(0.70 0.22 292)", "oklch(0.83 0.22 292)", "oklch(0.95 0.22 292)"]
+        "tonalRamp": [
+          "oklch(0.15 0.22 292)",
+          "oklch(0.26 0.22 292)",
+          "oklch(0.37 0.22 292)",
+          "oklch(0.48 0.22 292)",
+          "oklch(0.59 0.22 292)",
+          "oklch(0.70 0.22 292)",
+          "oklch(0.83 0.22 292)",
+          "oklch(0.95 0.22 292)"
+        ]
       },
       "ident-friends-ink": {
         "role": "primary",
         "displayName": "Soft Violet",
-        "canonical": "#BCA4FF",
+        "canonical": "#5B21B6",
         "note": "Friends tint for small text on the ink ground.",
-        "tonalRamp": ["oklch(0.15 0.13 292)", "oklch(0.26 0.13 292)", "oklch(0.37 0.13 292)", "oklch(0.48 0.13 292)", "oklch(0.59 0.13 292)", "oklch(0.70 0.13 292)", "oklch(0.83 0.13 292)", "oklch(0.95 0.13 292)"]
+        "tonalRamp": [
+          "oklch(0.15 0.13 292)",
+          "oklch(0.26 0.13 292)",
+          "oklch(0.37 0.13 292)",
+          "oklch(0.48 0.13 292)",
+          "oklch(0.59 0.13 292)",
+          "oklch(0.70 0.13 292)",
+          "oklch(0.83 0.13 292)",
+          "oklch(0.95 0.13 292)"
+        ]
       },
       "ident-bbt": {
         "role": "primary",
         "displayName": "Test-Card Cyan",
         "canonical": "#00C2D1",
         "note": "The Big Bang Theory, channel 03. Defined in SHOWS in main.py.",
-        "tonalRamp": ["oklch(0.15 0.115 205)", "oklch(0.26 0.115 205)", "oklch(0.37 0.115 205)", "oklch(0.48 0.115 205)", "oklch(0.59 0.115 205)", "oklch(0.70 0.115 205)", "oklch(0.83 0.115 205)", "oklch(0.95 0.115 205)"]
+        "tonalRamp": [
+          "oklch(0.15 0.115 205)",
+          "oklch(0.26 0.115 205)",
+          "oklch(0.37 0.115 205)",
+          "oklch(0.48 0.115 205)",
+          "oklch(0.59 0.115 205)",
+          "oklch(0.70 0.115 205)",
+          "oklch(0.83 0.115 205)",
+          "oklch(0.95 0.115 205)"
+        ]
       },
       "ident-bbt-ink": {
         "role": "primary",
         "displayName": "Pale Cyan",
-        "canonical": "#5CE1EC",
+        "canonical": "#046070",
         "note": "The Big Bang Theory tint for small text on the ink ground.",
-        "tonalRamp": ["oklch(0.15 0.10 200)", "oklch(0.26 0.10 200)", "oklch(0.37 0.10 200)", "oklch(0.48 0.10 200)", "oklch(0.59 0.10 200)", "oklch(0.70 0.10 200)", "oklch(0.83 0.10 200)", "oklch(0.95 0.10 200)"]
+        "tonalRamp": [
+          "oklch(0.15 0.10 200)",
+          "oklch(0.26 0.10 200)",
+          "oklch(0.37 0.10 200)",
+          "oklch(0.48 0.10 200)",
+          "oklch(0.59 0.10 200)",
+          "oklch(0.70 0.10 200)",
+          "oklch(0.83 0.10 200)",
+          "oklch(0.95 0.10 200)"
+        ]
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "The episode title on the ident plate, uppercase, balanced wrap. Nothing else uses it. Words are individually wrapped so they can rise in sequence on a channel change." },
-      "body": { "displayName": "Body", "purpose": "The episode summary, capped at 68ch." },
-      "quote": { "displayName": "Quote", "purpose": "The announcer's line, sentence case, in Muted Signal, capped at 62ch." },
-      "action": { "displayName": "Action", "purpose": "The NEXT button label. The only element besides the title that touches Archivo's width axis." },
-      "label": { "displayName": "Field Label", "purpose": "Tracked uppercase micro-caps for data field labels: FIRST AIRED, RATING, RUNTIME, ANNOUNCER. The wordmark sits one step up at 0.6875rem on the same tracking." },
-      "label-station": { "displayName": "Station Label", "purpose": "The show name in the station bug; truncates with an ellipsis rather than wrapping." },
-      "numeric-lead": { "displayName": "Numeric Lead", "purpose": "Season over episode in the lower third's channel block, always zero-padded to two digits." },
-      "numeric": { "displayName": "Numeric", "purpose": "The clock, the bug's channel number and every meta value. Supporting words sit at weight 400 in Muted Signal; the value steps to 500 in Broadcast White." },
-      "numeric-micro": { "displayName": "Numeric Micro", "purpose": "The keyboard hint and its key caps. Hidden under 900px." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "The episode title on the ident plate, uppercase, balanced wrap. Nothing else uses it. Words are individually wrapped so they can rise in sequence on a channel change."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "The episode summary, capped at 68ch."
+      },
+      "quote": {
+        "displayName": "Quote",
+        "purpose": "The announcer's line, sentence case, in Muted Signal, capped at 62ch."
+      },
+      "action": {
+        "displayName": "Action",
+        "purpose": "The NEXT button label. The only element besides the title that touches Archivo's width axis."
+      },
+      "label": {
+        "displayName": "Field Label",
+        "purpose": "Tracked uppercase micro-caps for data field labels: FIRST AIRED, RATING, RUNTIME, ANNOUNCER. The wordmark sits one step up at 0.6875rem on the same tracking."
+      },
+      "label-station": {
+        "displayName": "Station Label",
+        "purpose": "The show name in the station bug; truncates with an ellipsis rather than wrapping."
+      },
+      "numeric-lead": {
+        "displayName": "Numeric Lead",
+        "purpose": "Season over episode in the lower third's channel block, always zero-padded to two digits."
+      },
+      "numeric": {
+        "displayName": "Numeric",
+        "purpose": "The clock, the bug's channel number and every meta value. Supporting words sit at weight 400 in Muted Signal; the value steps to 500 in Broadcast White."
+      },
+      "numeric-micro": {
+        "displayName": "Numeric Micro",
+        "purpose": "The keyboard hint and its key caps. Hidden under 900px."
+      }
     },
     "shadows": [],
     "motion": [
-      { "name": "cut", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The system's only easing token. Every transition and keyframe animation uses it; the roll bar is the sole exception and runs linear." },
-      { "name": "ident-swap", "value": "260ms", "purpose": "Duration for every ident-driven colour change (plate, bug chip, channel numerals, announcer label) and for the lower third's retract and return." },
-      { "name": "press", "value": "140ms", "purpose": "Button transform and brightness response on hover and active." },
-      { "name": "roll", "value": "520ms linear", "purpose": "The scan sweep that crosses the stage once during a channel change; a white-alpha gradient bar translating 560% of its own height." },
-      { "name": "word-rise", "value": "420ms", "purpose": "Each title word rises from translateY(0.42em) with opacity when a new programme is announced." },
-      { "name": "word-stagger", "value": "45ms", "purpose": "Per-word delay across the title, set via a --i custom property on each word span." },
-      { "name": "decode-floor", "value": "200ms", "purpose": "Minimum wait raced against img.decode() so the cut can only land on a frame that is ready." },
-      { "name": "reduced-motion", "value": "prefers-reduced-motion: reduce", "purpose": "Collapses the whole sequence to decode-then-paint: roll animation, all 260ms transitions and the word-rise are switched off and the swap is instantaneous." }
+      {
+        "name": "cut",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "The system's only easing token. Every transition and keyframe animation uses it; the roll bar is the sole exception and runs linear."
+      },
+      {
+        "name": "ident-swap",
+        "value": "260ms",
+        "purpose": "Duration for every ident-driven colour change (plate, bug chip, channel numerals, announcer label) and for the lower third's retract and return."
+      },
+      {
+        "name": "press",
+        "value": "140ms",
+        "purpose": "Button transform and brightness response on hover and active."
+      },
+      {
+        "name": "roll",
+        "value": "520ms linear",
+        "purpose": "The scan sweep that crosses the stage once during a channel change; a white-alpha gradient bar translating 560% of its own height."
+      },
+      {
+        "name": "word-rise",
+        "value": "420ms",
+        "purpose": "Each title word rises from translateY(0.42em) with opacity when a new programme is announced."
+      },
+      {
+        "name": "word-stagger",
+        "value": "45ms",
+        "purpose": "Per-word delay across the title, set via a --i custom property on each word span."
+      },
+      {
+        "name": "decode-floor",
+        "value": "200ms",
+        "purpose": "Minimum wait raced against img.decode() so the cut can only land on a frame that is ready."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Collapses the whole sequence to decode-then-paint: roll animation, all 260ms transitions and the word-rise are switched off and the swap is instantaneous."
+      }
     ],
     "breakpoints": [
-      { "name": "compact", "value": "max-width: 900px", "purpose": "Rail 44px, inset 12px, page scrolls, stage takes 16/9, lower third goes static beneath the still, info collapses to one column, button full width, wordmark / rotation count / keyboard hint hidden." },
-      { "name": "short", "value": "min-width: 901px and max-height: 820px", "purpose": "Title clamp tightens, synopsis cap drops to 6.4em, lower third padding contracts. The frame stays locked to the viewport." },
-      { "name": "very-short", "value": "min-width: 901px and max-height: 640px", "purpose": "The frame gives up its fixed height, the page scrolls and the synopsis cap is released." }
+      {
+        "name": "compact",
+        "value": "max-width: 900px",
+        "purpose": "Rail 44px, inset 12px, page scrolls, stage takes 16/9, lower third goes static beneath the still, info collapses to one column, button full width, wordmark / rotation count / keyboard hint hidden."
+      },
+      {
+        "name": "short",
+        "value": "min-width: 901px and max-height: 820px",
+        "purpose": "Title clamp tightens, synopsis cap drops to 6.4em, lower third padding contracts. The frame stays locked to the viewport."
+      },
+      {
+        "name": "very-short",
+        "value": "min-width: 901px and max-height: 640px",
+        "purpose": "The frame gives up its fixed height, the page scrolls and the synopsis cap is released."
+      }
     ]
   },
   "components": [
@@ -152,7 +367,7 @@
       "refersTo": "button-next",
       "description": "The only control in the system. Ident-filled block with a next-track glyph; also bound to N and Space.",
       "html": "<button class=\"ds-next\" type=\"button\"><svg width=\"15\" height=\"14\" viewBox=\"0 0 15 14\" fill=\"none\" aria-hidden=\"true\"><path d=\"M1 1.4v11.2L9 7 1 1.4Z\" fill=\"currentColor\"/><path d=\"M11.5 1.4v11.2\" stroke=\"currentColor\" stroke-width=\"2.4\"/></svg><span>Next episode</span></button>",
-      "css": ".ds-next { display: inline-flex; align-items: center; gap: 12px; background: var(--ident, #FF4B12); color: var(--on-ident, #07101A); border: 0; border-radius: 0; padding: 17px 26px; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; font-stretch: 112%; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 260ms cubic-bezier(0.16,1,0.3,1), transform 140ms cubic-bezier(0.16,1,0.3,1), filter 140ms linear; } .ds-next svg { display: block; } .ds-next:hover { filter: brightness(1.12); } .ds-next:active { transform: translateY(1px); } .ds-next:focus-visible { outline: 2px solid var(--ident-ink, #FF9166); outline-offset: 3px; } .ds-next[disabled] { cursor: progress; filter: brightness(0.72); }"
+      "css": ".ds-next { display: inline-flex; align-items: center; gap: 12px; background: var(--ident, #FF4B12); color: var(--on-ident, #07101A); border: 0; border-radius: 0; padding: 17px 26px; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 700; font-stretch: 112%; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 260ms cubic-bezier(0.16,1,0.3,1), transform 140ms cubic-bezier(0.16,1,0.3,1), filter 140ms linear; } .ds-next svg { display: block; } .ds-next:hover { filter: brightness(1.12); } .ds-next:active { transform: translateY(1px); } .ds-next:focus-visible { outline: 2px solid var(--ident-ink, #B23107); outline-offset: 3px; } .ds-next[disabled] { cursor: progress; filter: brightness(0.72); }"
     },
     {
       "name": "Lower Third",
@@ -160,7 +375,7 @@
       "refersTo": "lower-third-plate",
       "description": "The signature component. A stacked bar seated on the still's bottom-left: near-black channel block plus ident-filled title plate. Add .out to retract it left during a draw.",
       "html": "<div class=\"ds-lower-third\"><span class=\"ds-lt-channel\">S02<br>E14</span><div class=\"ds-lt-plate\"><h1 class=\"ds-lt-title\">The One With The Prom Video</h1></div></div>",
-      "css": ".ds-lower-third { display: inline-flex; align-items: stretch; max-width: min(100%, 62ch); transform: translateX(0); transition: transform 260ms cubic-bezier(0.16,1,0.3,1); } .ds-lower-third.out { transform: translateX(calc(-100% - 4px)); } .ds-lt-channel { background: var(--on-ident, #07101A); color: var(--ident-ink, #FF9166); font-family: 'Azeret Mono', ui-monospace, monospace; font-weight: 500; font-size: 1.0625rem; line-height: 1.15; font-variant-numeric: tabular-nums; padding: 18px 16px; display: flex; flex-direction: column; justify-content: center; transition: color 260ms cubic-bezier(0.16,1,0.3,1); } .ds-lt-plate { background: var(--ident, #FF4B12); padding: 16px 28px 18px 22px; display: flex; align-items: center; min-width: 0; transition: background 260ms cubic-bezier(0.16,1,0.3,1); } .ds-lt-title { margin: 0; overflow-wrap: anywhere; color: var(--on-ident, #07101A); font-family: 'Archivo', system-ui, sans-serif; font-size: clamp(1.5rem, 2.9vw, 2.75rem); font-stretch: 118%; font-weight: 800; line-height: 0.95; letter-spacing: -0.005em; text-transform: uppercase; text-wrap: balance; }"
+      "css": ".ds-lower-third { display: inline-flex; align-items: stretch; max-width: min(100%, 62ch); transform: translateX(0); transition: transform 260ms cubic-bezier(0.16,1,0.3,1); } .ds-lower-third.out { transform: translateX(calc(-100% - 4px)); } .ds-lt-channel { background: var(--on-ident, #07101A); color: var(--ident-ink, #B23107); font-family: 'Azeret Mono', ui-monospace, monospace; font-weight: 500; font-size: 1.0625rem; line-height: 1.15; font-variant-numeric: tabular-nums; padding: 18px 16px; display: flex; flex-direction: column; justify-content: center; transition: color 260ms cubic-bezier(0.16,1,0.3,1); } .ds-lt-plate { background: var(--ident, #FF4B12); padding: 16px 28px 18px 22px; display: flex; align-items: center; min-width: 0; transition: background 260ms cubic-bezier(0.16,1,0.3,1); } .ds-lt-title { margin: 0; overflow-wrap: anywhere; color: var(--on-ident, #07101A); font-family: 'Archivo', system-ui, sans-serif; font-size: clamp(1.5rem, 2.9vw, 2.75rem); font-stretch: 118%; font-weight: 800; line-height: 0.95; letter-spacing: -0.005em; text-transform: uppercase; text-wrap: balance; }"
     },
     {
       "name": "Station Bug",
@@ -168,7 +383,7 @@
       "refersTo": "station-bug-channel",
       "description": "Channel identity in the top rail: ident-filled channel chip plus the show name in tracked caps, boxed in a single hairline. Relabels the chip to OFF AIR when a draw fails.",
       "html": "<div class=\"ds-bug\"><span class=\"ds-bug-no\">CH 01</span><span class=\"ds-bug-name\">The Office</span></div>",
-      "css": ".ds-bug { display: inline-flex; align-items: stretch; min-width: 0; border: 1px solid var(--rule, #1B2733); border-radius: 0; } .ds-bug-no { background: var(--ident, #FF4B12); color: var(--on-ident, #07101A); font-family: 'Azeret Mono', ui-monospace, monospace; font-weight: 500; font-size: 0.8125rem; font-variant-numeric: tabular-nums; padding: 7px 10px; transition: background 260ms cubic-bezier(0.16,1,0.3,1); } .ds-bug-name { padding: 7px 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg, #F3F6F9); align-self: center; }"
+      "css": ".ds-bug { display: inline-flex; align-items: stretch; min-width: 0; border: 1px solid var(--rule, #C6CCD3); border-radius: 0; } .ds-bug-no { background: var(--ident, #FF4B12); color: var(--on-ident, #07101A); font-family: 'Azeret Mono', ui-monospace, monospace; font-weight: 500; font-size: 0.8125rem; font-variant-numeric: tabular-nums; padding: 7px 10px; transition: background 260ms cubic-bezier(0.16,1,0.3,1); } .ds-bug-name { padding: 7px 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg, #0B1219); align-self: center; }"
     },
     {
       "name": "Continuity Clock",
@@ -176,7 +391,7 @@
       "refersTo": null,
       "description": "The rail's left cluster: wordmark, ident status dot with 'On now', a live ticking time, and the rotation count. Tabular figures keep the row from jittering.",
       "html": "<div class=\"ds-clock\"><span class=\"ds-clock-wordmark\">Random Episode Generator</span><span class=\"ds-clock-live\">On now</span><time datetime=\"\">02:36:06</time><span>717 in rotation</span></div>",
-      "css": ".ds-clock { display: flex; align-items: baseline; gap: 14px; min-width: 0; font-family: 'Azeret Mono', ui-monospace, monospace; font-size: 0.8125rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; color: var(--fg-dim, #93A3B4); } .ds-clock time { color: var(--fg, #F3F6F9); font-weight: 500; } .ds-clock-wordmark { font-family: 'Archivo', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg, #F3F6F9); white-space: nowrap; } .ds-clock-live { display: inline-flex; align-items: center; gap: 7px; color: var(--ident-ink, #FF9166); } .ds-clock-live::before { content: \"\"; width: 7px; height: 7px; background: var(--ident, #FF4B12); border-radius: 50%; }"
+      "css": ".ds-clock { display: flex; align-items: baseline; gap: 14px; min-width: 0; font-family: 'Azeret Mono', ui-monospace, monospace; font-size: 0.8125rem; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; color: var(--fg-dim, #59636F); } .ds-clock time { color: var(--fg, #0B1219); font-weight: 500; } .ds-clock-wordmark { font-family: 'Archivo', system-ui, sans-serif; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg, #0B1219); white-space: nowrap; } .ds-clock-live { display: inline-flex; align-items: center; gap: 7px; color: var(--ident-ink, #B23107); } .ds-clock-live::before { content: \"\"; width: 7px; height: 7px; background: var(--ident, #FF4B12); border-radius: 50%; }"
     },
     {
       "name": "Meta Block",
@@ -184,7 +399,7 @@
       "refersTo": null,
       "description": "Three-field definition list under the still. Tracked uppercase label over a mono value; a missing value renders an em dash, never a blank.",
       "html": "<dl class=\"ds-meta\"><div><dt>First aired</dt><dd>2/1/1996</dd></div><div><dt>Rating</dt><dd>9.3</dd></div><div><dt>Runtime</dt><dd>30 min</dd></div></dl>",
-      "css": ".ds-meta { display: flex; gap: 30px; margin: 0; font-family: 'Azeret Mono', ui-monospace, monospace; font-size: 0.8125rem; font-variant-numeric: tabular-nums; } .ds-meta div { display: flex; flex-direction: column; gap: 4px; } .ds-meta dt { font-family: 'Archivo', system-ui, sans-serif; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim, #93A3B4); } .ds-meta dd { margin: 0; color: var(--fg, #F3F6F9); font-weight: 500; }"
+      "css": ".ds-meta { display: flex; gap: 30px; margin: 0; font-family: 'Azeret Mono', ui-monospace, monospace; font-size: 0.8125rem; font-variant-numeric: tabular-nums; } .ds-meta div { display: flex; flex-direction: column; gap: 4px; } .ds-meta dt { font-family: 'Archivo', system-ui, sans-serif; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-dim, #59636F); } .ds-meta dd { margin: 0; color: var(--fg, #0B1219); font-weight: 500; }"
     },
     {
       "name": "Announcer Quote",
@@ -192,7 +407,7 @@
       "refersTo": null,
       "description": "An ident-ink field label above a sentence-case quote in Muted Signal. Labels in this system attach to data fields, never above the episode title.",
       "html": "<p class=\"ds-announcer\"><b>Announcer</b><span>Pivot! PIVOT!</span></p>",
-      "css": ".ds-announcer { margin: 0; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.9375rem; line-height: 1.45; color: var(--fg-dim, #93A3B4); max-width: 62ch; } .ds-announcer b { display: block; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ident-ink, #FF9166); margin-bottom: 3px; transition: color 260ms cubic-bezier(0.16,1,0.3,1); }"
+      "css": ".ds-announcer { margin: 0; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.9375rem; line-height: 1.45; color: var(--fg-dim, #59636F); max-width: 62ch; } .ds-announcer b { display: block; font-size: 0.625rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ident-ink, #B23107); margin-bottom: 3px; transition: color 260ms cubic-bezier(0.16,1,0.3,1); }"
     },
     {
       "name": "Key Cap Hint",
@@ -200,47 +415,103 @@
       "refersTo": "key-cap",
       "description": "Keyboard affordance under the button: mono text with hairline-boxed key caps. Hidden under 900px.",
       "html": "<p class=\"ds-hint\">Press <kbd>N</kbd> or <kbd>Space</kbd></p>",
-      "css": ".ds-hint { margin: 0; font-family: 'Azeret Mono', ui-monospace, monospace; font-size: 0.6875rem; letter-spacing: 0.05em; color: var(--fg-dim, #93A3B4); } .ds-hint kbd { font-family: inherit; border: 1px solid var(--rule, #1B2733); border-radius: 0; padding: 1px 5px; color: var(--fg, #F3F6F9); }"
+      "css": ".ds-hint { margin: 0; font-family: 'Azeret Mono', ui-monospace, monospace; font-size: 0.6875rem; letter-spacing: 0.05em; color: var(--fg-dim, #59636F); } .ds-hint kbd { font-family: inherit; border: 1px solid var(--rule, #C6CCD3); border-radius: 0; padding: 1px 5px; color: var(--fg, #0B1219); }"
     },
     {
       "name": "Safe-Area Ticks",
       "kind": "custom",
       "refersTo": null,
-      "description": "Four 16px corner brackets marking the composition's safe area — the system's one open form. Non-interactive.",
+      "description": "Four 16px corner brackets marking the composition's safe area \u2014 the system's one open form. Non-interactive.",
       "html": "<div class=\"ds-safe\"><span class=\"ds-tick tl\"></span><span class=\"ds-tick tr\"></span><span class=\"ds-tick bl\"></span><span class=\"ds-tick br\"></span></div>",
-      "css": ".ds-safe { position: relative; min-height: 120px; min-width: 220px; background: var(--ground, #05090E); } .ds-tick { position: absolute; width: 16px; height: 16px; border: 1px solid var(--tick, #44596F); pointer-events: none; } .ds-tick.tl { top: 8px; left: 8px; border-right: 0; border-bottom: 0; } .ds-tick.tr { top: 8px; right: 8px; border-left: 0; border-bottom: 0; } .ds-tick.bl { bottom: 8px; left: 8px; border-right: 0; border-top: 0; } .ds-tick.br { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }"
+      "css": ".ds-safe { position: relative; min-height: 120px; min-width: 220px; background: var(--ground, #F1F3F5); } .ds-tick { position: absolute; width: 16px; height: 16px; border: 1px solid var(--tick, #7E8894); pointer-events: none; } .ds-tick.tl { top: 8px; left: 8px; border-right: 0; border-bottom: 0; } .ds-tick.tr { top: 8px; right: 8px; border-left: 0; border-bottom: 0; } .ds-tick.bl { bottom: 8px; left: 8px; border-right: 0; border-top: 0; } .ds-tick.br { bottom: 8px; right: 8px; border-left: 0; border-top: 0; }"
     }
   ],
   "narrative": {
     "northStar": "The Continuity Booth",
-    "overview": "This is the room between programmes. Not the listings page, not the library, not the poster wall — the booth where the next thing is already cued and someone tells you what it is. Everything on the surface is furniture from that room, rendered as working chrome rather than decoration: an ink ground the colour of an unlit monitor, four safe-area brackets at the corners of the composition, a clock that actually ticks against the system time, a station bug carrying the channel number and the show's name, and a lower third that seats itself on the bottom-left of the still and announces the title. The still is the largest thing on screen because recognition is the fastest route to a yes.\n\nThe system's whole colour argument is the ident. Each show ships one saturated hue that fills complete rectangles — the title plate, the bug's channel chip, the NEXT button — and swaps in a single beat when the channel changes. It is never a tint, never a border, never a 4px underline. The rest of the palette is four steps of ink and two steps of light, joined by 1px hairlines. There is no shadow anywhere in the build; depth is carried by the black stage well, the hairline, and the ident plate physically overlapping the image.\n\nDensity is high but not busy: on desktop the composition is exactly one viewport tall and never scrolls, which means every fact about the episode — title, season and episode, summary, quote, air date, rating, runtime — and the only control are all in view at once. Confirmed refusals, all visible in the build's own material: no gradient scrim under type, no rounded corners, no card that could be repeated into a grid, no second control, no cross-fade.",
+    "overview": "This is the room between programmes. Not the listings page, not the library, not the poster wall \u2014 the booth where the next thing is already cued and someone tells you what it is. Everything on the surface is furniture from that room, rendered as working chrome rather than decoration: an ink ground the colour of an unlit monitor, four safe-area brackets at the corners of the composition, a clock that actually ticks against the system time, a station bug carrying the channel number and the show's name, and a lower third that seats itself on the bottom-left of the still and announces the title. The still is the largest thing on screen because recognition is the fastest route to a yes.\n\nThe system's whole colour argument is the ident. Each show ships one saturated hue that fills complete rectangles \u2014 the title plate, the bug's channel chip, the NEXT button \u2014 and swaps in a single beat when the channel changes. It is never a tint, never a border, never a 4px underline. The rest of the palette is four steps of ink and two steps of light, joined by 1px hairlines. There is no shadow anywhere in the build; depth is carried by the black stage well, the hairline, and the ident plate physically overlapping the image.\n\nDensity is high but not busy: on desktop the composition is exactly one viewport tall and never scrolls, which means every fact about the episode \u2014 title, season and episode, summary, quote, air date, rating, runtime \u2014 and the only control are all in view at once. Confirmed refusals, all visible in the build's own material: no gradient scrim under type, no rounded corners, no card that could be repeated into a grid, no second control, no cross-fade.",
     "keyCharacteristics": [
       "Ink ground, square corners, 1px hairlines, and not one shadow.",
       "One saturated ident per show, filling whole fields rather than accenting them.",
       "Expanded Archivo caps for the title; Azeret Mono for every number the interface states.",
       "Broadcast furniture as working chrome: safe-area brackets, ticking clock, station bug.",
-      "A desktop frame locked to 100dvh — the page never scrolls, the synopsis does.",
+      "A desktop frame locked to 100dvh \u2014 the page never scrolls, the synopsis does.",
       "Cuts and slides only; content never cross-fades from old to new.",
       "Exactly one control, reachable by pointer or by N / Space."
     ],
     "rules": [
-      { "name": "The Whole-Field Rule", "body": "The ident colour fills a complete rectangle or it does not appear. Plate, channel chip, button — full backgrounds, no exceptions for borders, underlines, tints or icon strokes. Its only sub-field appearances are the 7px \"On now\" dot, the text caret and the scrollbar thumb on hover, all of which are chrome, not content.", "section": "colors" },
-      { "name": "The Two-Tint Rule", "body": "Every show ships a pair. The saturated --ident only ever fills; the lightened --ident-ink only ever draws — small text and the focus ring — because it is the tint of that hue that clears 4.5:1 against the ink ground. Never set type in --ident on the ground; never fill a field with --ident-ink.", "section": "colors" },
-      { "name": "The Black Well Rule", "body": "The stage is #000, one step darker than the page. The still fills it edge to edge with object-fit: cover and no overlay, no scrim, no vignette, no colour grade.", "section": "colors" },
-      { "name": "The Numbers Are Mono Rule", "body": "Every number the interface states about the programme is Azeret Mono: the clock, the channel, the season and episode, the air date, the rating, the runtime, the rotation count, the key caps. Numerals inside prose and inside episode titles stay in Archivo, because there they are language, not data. font-variant-numeric: tabular-nums is set globally so a ticking clock never shifts its neighbours.", "section": "typography" },
-      { "name": "The Width Axis Rule", "body": "Emphasis comes from width before it comes from size. The title runs wdth 118 at weight 800; the button runs wdth 112 at weight 700. Nothing else in the system touches the axis — a new element gets emphasis from case and tracking, not by widening.", "section": "typography" },
-      { "name": "The Caps-For-Chrome Rule", "body": "Uppercase with 0.1–0.2em tracking is reserved for chrome: the title, the button, the station name, field labels, the wordmark. Body copy and the announcer quote are always sentence case and never tracked.", "section": "typography" },
-      { "name": "The One Screen Rule", "body": "On desktop the frame is exactly the viewport and body is overflow: hidden. Nothing is below the fold because there is no fold. A long summary scrolls inside its own block — max-height: 8.6em, scrollbar-width: thin, overscroll-behavior: contain — never by growing the page. If a new element cannot fit, something else has to shrink.", "section": "layout" },
-      { "name": "The Safe Area Rule", "body": "Content lives inside the 22px inset with the four brackets marking it. Nothing bleeds to the viewport edge; the only edge-to-edge surface is the still inside its own stage box.", "section": "layout" },
-      { "name": "The No-Shadow Rule", "body": "Surfaces do not float. If an element needs to read as above another, it overlaps it or it gets a hairline. Adding a shadow to this world puts it in a different one.", "section": "elevation" },
-      { "name": "The No-Scrim Rule", "body": "Text over the still sits on a solid opaque bar. A gradient scrim, a darkened overlay or a blurred backdrop under type is out of the system — the lower third's legibility comes from the field, not from dimming the picture.", "section": "elevation" },
-      { "name": "The Square Corner Rule", "body": "Radius is 0px everywhere. The only curve permitted is a status dot.", "section": "shapes" },
-      { "name": "The One Control Rule", "body": "The surface has exactly one interactive element, and it is the only ident-filled thing below the stage. It is bound to N and Space as well as to click, and it is never scrolled out of reach.", "section": "components" },
-      { "name": "The Cut, Never Fade Rule", "body": "Content changes are cuts and slides. Nothing cross-fades from old content to new — a fade would show two programmes at once, which is the one thing this world will not do. Colour and the roll sweep may transition; text and images may not.", "section": "components" },
-      { "name": "The Kept Programme Rule", "body": "No state — loading, error, or draw-in-flight — is allowed to blank the stage. What is on air stays on air until something better has fully arrived.", "section": "components" }
+      {
+        "name": "The Whole-Field Rule",
+        "body": "The ident colour fills a complete rectangle or it does not appear. Plate, channel chip, button \u2014 full backgrounds, no exceptions for borders, underlines, tints or icon strokes. Its only sub-field appearances are the 7px \"On now\" dot, the text caret and the scrollbar thumb on hover, all of which are chrome, not content.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Tint Rule",
+        "body": "Every show ships a pair. The saturated --ident only ever fills; the lightened --ident-ink only ever draws \u2014 small text and the focus ring \u2014 because it is the tint of that hue that clears 4.5:1 against the ink ground. Never set type in --ident on the ground; never fill a field with --ident-ink.",
+        "section": "colors"
+      },
+      {
+        "name": "The Black Well Rule",
+        "body": "The stage is #000, one step darker than the page. The still fills it edge to edge with object-fit: cover and no overlay, no scrim, no vignette, no colour grade.",
+        "section": "colors"
+      },
+      {
+        "name": "The Numbers Are Mono Rule",
+        "body": "Every number the interface states about the programme is Azeret Mono: the clock, the channel, the season and episode, the air date, the rating, the runtime, the rotation count, the key caps. Numerals inside prose and inside episode titles stay in Archivo, because there they are language, not data. font-variant-numeric: tabular-nums is set globally so a ticking clock never shifts its neighbours.",
+        "section": "typography"
+      },
+      {
+        "name": "The Width Axis Rule",
+        "body": "Emphasis comes from width before it comes from size. The title runs wdth 118 at weight 800; the button runs wdth 112 at weight 700. Nothing else in the system touches the axis \u2014 a new element gets emphasis from case and tracking, not by widening.",
+        "section": "typography"
+      },
+      {
+        "name": "The Caps-For-Chrome Rule",
+        "body": "Uppercase with 0.1\u20130.2em tracking is reserved for chrome: the title, the button, the station name, field labels, the wordmark. Body copy and the announcer quote are always sentence case and never tracked.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Screen Rule",
+        "body": "On desktop the frame is exactly the viewport and body is overflow: hidden. Nothing is below the fold because there is no fold. A long summary scrolls inside its own block \u2014 max-height: 8.6em, scrollbar-width: thin, overscroll-behavior: contain \u2014 never by growing the page. If a new element cannot fit, something else has to shrink.",
+        "section": "layout"
+      },
+      {
+        "name": "The Safe Area Rule",
+        "body": "Content lives inside the 22px inset with the four brackets marking it. Nothing bleeds to the viewport edge; the only edge-to-edge surface is the still inside its own stage box.",
+        "section": "layout"
+      },
+      {
+        "name": "The No-Shadow Rule",
+        "body": "Surfaces do not float. If an element needs to read as above another, it overlaps it or it gets a hairline. Adding a shadow to this world puts it in a different one.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No-Scrim Rule",
+        "body": "Text over the still sits on a solid opaque bar. A gradient scrim, a darkened overlay or a blurred backdrop under type is out of the system \u2014 the lower third's legibility comes from the field, not from dimming the picture.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Corner Rule",
+        "body": "Radius is 0px everywhere. The only curve permitted is a status dot.",
+        "section": "shapes"
+      },
+      {
+        "name": "The One Control Rule",
+        "body": "The surface has exactly one interactive element, and it is the only ident-filled thing below the stage. It is bound to N and Space as well as to click, and it is never scrolled out of reach.",
+        "section": "components"
+      },
+      {
+        "name": "The Cut, Never Fade Rule",
+        "body": "Content changes are cuts and slides. Nothing cross-fades from old content to new \u2014 a fade would show two programmes at once, which is the one thing this world will not do. Colour and the roll sweep may transition; text and images may not.",
+        "section": "components"
+      },
+      {
+        "name": "The Kept Programme Rule",
+        "body": "No state \u2014 loading, error, or draw-in-flight \u2014 is allowed to blank the stage. What is on air stays on air until something better has fully arrived.",
+        "section": "components"
+      }
     ],
     "dos": [
-      "Do fill a complete rectangle with the ident colour or leave it out entirely — plate, channel chip, button. See The Whole-Field Rule.",
+      "Do fill a complete rectangle with the ident colour or leave it out entirely \u2014 plate, channel chip, button. See The Whole-Field Rule.",
       "Do use the paired --ident-ink tint whenever that hue has to become type on the ink ground, and keep near-black on-ident for type on an ident field.",
       "Do set every stated number in Azeret Mono and every word in Archivo, per The Numbers Are Mono Rule.",
       "Do reach for the width axis before size when a new element needs emphasis (wdth 118 / 800 for display, 112 / 700 for actions).",
@@ -253,14 +524,14 @@
     ],
     "donts": [
       "Don't set type in --ident on the ink ground, or fill a field with --ident-ink. The two tints do not swap jobs.",
-      "Don't put a gradient scrim, dark overlay or backdrop blur under text on the still — the lower third is a solid bar. The only gradient in the system is the transient roll sweep, which never carries content.",
+      "Don't put a gradient scrim, dark overlay or backdrop blur under text on the still \u2014 the lower third is a solid bar. The only gradient in the system is the transient roll sweep, which never carries content.",
       "Don't round a corner. Radius is 0px; the one circle is the 7px status dot.",
       "Don't add a box-shadow, glow or blur. Depth is hairline, black well and overlap.",
       "Don't cross-fade content, and don't animate the still's opacity. Changes cut or slide.",
       "Don't place a label, kicker or eyebrow above the episode title; its only companion is the S/E block beside it.",
       "Don't introduce a second control, or a second ident-filled element that competes with NEXT below the stage.",
       "Don't add a repeatable card, grid, rail or carousel of stills. There is no card component in this system, and the world refuses the library it would build.",
-      "Don't let the type fall back to a platform sans — both faces are self-hosted, preloaded and font-display: block on purpose.",
+      "Don't let the type fall back to a platform sans \u2014 both faces are self-hosted, preloaded and font-display: block on purpose.",
       "Don't invent a fourth ident colour. Ident pairs come from the show table in main.py; a new colour means a new show."
     ]
   }

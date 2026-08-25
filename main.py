@@ -14,17 +14,17 @@ episode_data = {}
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Each show is announced in its own ident colour, the way a channel is
-# "color" fills whole fields; "ink" is the lightened tint small text needs to
-# clear 4.5:1 against the ground.
+# "color" fills whole fields; "ink" is the darkened tint small text needs to
+# clear 4.5:1 against the paper ground.
 SHOWS = {
   "The Office": {
-    "slug": "the_office", "channel": "01", "color": "#FF4B12", "ink": "#FF9166"
+    "slug": "the_office", "channel": "01", "color": "#FF4B12", "ink": "#B23107"
   },
   "Friends": {
-    "slug": "friends", "channel": "02", "color": "#8B5CF6", "ink": "#BCA4FF"
+    "slug": "friends", "channel": "02", "color": "#8B5CF6", "ink": "#5B21B6"
   },
   "The Big Bang Theory": {
-    "slug": "big_bang_theory", "channel": "03", "color": "#00C2D1", "ink": "#5CE1EC"
+    "slug": "big_bang_theory", "channel": "03", "color": "#00C2D1", "ink": "#046070"
   },
 }
 
@@ -127,9 +127,9 @@ OFF_AIR = """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <style>
 @font-face{font-family:'Archivo';src:url('/static/fonts/archivo-latin.woff2') format('woff2-variations');
 font-weight:400 800;font-stretch:62% 125%;font-display:block}
-html,body{height:100%;margin:0;background:#05090E;color:#F3F6F9;
+html,body{height:100%;margin:0;background:#F1F3F5;color:#0B1219;
 font-family:'Archivo',sans-serif;display:grid;place-items:center;text-align:center;padding:24px}
-p{color:#93A3B4;max-width:44ch;line-height:1.5}
+p{color:#59636F;max-width:44ch;line-height:1.5}
 strong{display:block;font-size:1.5rem;font-stretch:118%;font-weight:800;letter-spacing:.06em;
 text-transform:uppercase;margin-bottom:.75rem}
 </style></head><body><div><strong>Off air</strong>
