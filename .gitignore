@@ -27,3 +27,9 @@ env/
 .cursor/
 .agent/
 .agents/
+
+# Impeccable build artifacts (design records at the root stay tracked)
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/config.local.json
+.impeccable/questions/

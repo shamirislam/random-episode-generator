@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify, render_template, request
 import ast
 import csv
 import os
@@ -11,10 +11,28 @@ app = Flask(__name__)
 episode_data = {}
 
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Each show is announced in its own ident colour, the way a channel is
+# "color" fills whole fields; "ink" is the lightened tint small text needs to
+# clear 4.5:1 against the ground.
+SHOWS = {
+  "The Office": {
+    "slug": "the_office", "channel": "01", "color": "#FF4B12", "ink": "#FF9166"
+  },
+  "Friends": {
+    "slug": "friends", "channel": "02", "color": "#8B5CF6", "ink": "#BCA4FF"
+  },
+  "The Big Bang Theory": {
+    "slug": "big_bang_theory", "channel": "03", "color": "#00C2D1", "ink": "#5CE1EC"
+  },
+}
+
+
 def read_csv(show):
-  file_path = f"./{show}_episodes.csv"
+  file_path = os.path.join(BASE_DIR, f"{show}_episodes.csv")
   try:
-    with open(file_path, "r") as file:
+    with open(file_path, "r", encoding="utf-8") as file:
       reader = csv.reader(file)
       return list(reader)[1:]  # Exclude header
   except FileNotFoundError:
@@ -32,9 +50,8 @@ def read_rating(value):
   return parsed or None
 
 
-episode_data["The Office"] = read_csv("the_office")
-episode_data["Friends"] = read_csv("friends")
-episode_data["The Big Bang Theory"] = read_csv("big_bang_theory")
+for _show, _info in SHOWS.items():
+  episode_data[_show] = read_csv(_info["slug"])
 
 # Iconic quotes shown alongside the episode
 quotes = {
@@ -68,35 +85,73 @@ quotes = {
 }
 
 
-@app.route("/")
-def home():
-  # Randomly choose one of the available shows
-  chosen_show = random.choice(["The Office", "Friends", "The Big Bang Theory"])
-  episodes = episode_data.get(chosen_show, [])
+def draw_episode(exclude=None):
+  """Pick one random episode from any show, as a flat dict for the template."""
+  available = [name for name, rows in episode_data.items() if rows]
+  if not available:
+    return None
 
-  if not episodes:
-    return "Files not loaded properly", 500
+  chosen_show = random.choice(available)
+  episodes = episode_data[chosen_show]
 
   episode = random.choice(episodes)
-  episode[6] = html.unescape(episode[6])  # Unescape HTML entities
+  # Avoid repeating the episode the visitor is already looking at
+  if exclude and len(episodes) > 1:
+    for _ in range(5):
+      if f"{chosen_show}|{episode[1]}|{episode[2]}" != exclude:
+        break
+      episode = random.choice(episodes)
 
-  # Check if image_url exists in the episode data
-  image_url = episode[7] if len(episode) > 7 else None
+  info = SHOWS[chosen_show]
+  return {
+    "show": chosen_show,
+    "channel": info["channel"],
+    "color": info["color"],
+    "ink": info["ink"],
+    "title": html.unescape(episode[0]),
+    "season": episode[1],
+    "number": episode[2],
+    "airdate": episode[3] if len(episode) > 3 else None,
+    "runtime": episode[4] if len(episode) > 4 else None,
+    "rating": read_rating(episode[5]) if len(episode) > 5 else None,
+    "summary": html.unescape(episode[6]) if len(episode) > 6 else "",
+    "image_url": episode[7] if len(episode) > 7 else None,
+    "quote": random.choice(quotes.get(chosen_show, [""])),
+    "id": f"{chosen_show}|{episode[1]}|{episode[2]}",
+    "total": sum(len(rows) for rows in episode_data.values() if rows),
+  }
 
-  quote = random.choice(quotes.get(chosen_show, [""]))
-  airdate = episode[3] if len(episode) > 3 else None
-  rating = read_rating(episode[5]) if len(episode) > 5 else None
 
-  # Render the chosen episode
-  return render_template(
-    "home.html",
-    episode=episode,
-    show=chosen_show.capitalize(),
-    image_url=image_url,
-    quote=quote,
-    airdate=airdate,
-    rating=rating,
-  )
+OFF_AIR = """<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>Off air - Random Episode Generator</title>
+<style>
+@font-face{font-family:'Archivo';src:url('/static/fonts/archivo-latin.woff2') format('woff2-variations');
+font-weight:400 800;font-stretch:62% 125%;font-display:block}
+html,body{height:100%;margin:0;background:#05090E;color:#F3F6F9;
+font-family:'Archivo',sans-serif;display:grid;place-items:center;text-align:center;padding:24px}
+p{color:#93A3B4;max-width:44ch;line-height:1.5}
+strong{display:block;font-size:1.5rem;font-stretch:118%;font-weight:800;letter-spacing:.06em;
+text-transform:uppercase;margin-bottom:.75rem}
+</style></head><body><div><strong>Off air</strong>
+<p>No episode data loaded, so there is nothing to broadcast. The episode CSV files
+are missing from the server.</p></div></body></html>"""
+
+
+@app.route("/")
+def home():
+  episode = draw_episode()
+  if not episode:
+    return OFF_AIR, 500
+  return render_template("home.html", ep=episode)
+
+
+@app.route("/next")
+def next_episode():
+  """Draw for the client so the transition can play without a reload."""
+  episode = draw_episode(exclude=request.args.get("from"))
+  if not episode:
+    return jsonify({"error": "no episodes loaded"}), 500
+  return jsonify(episode)
 
 
 if __name__ == '__main__':
